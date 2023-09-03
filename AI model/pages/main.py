@@ -2,13 +2,13 @@ import json
 
 import openai
 import streamlit as st
-from pages.quiz import get_quiz_from_topic
+from quiz import get_quiz_from_topic
 from decouple import config
 
 # Input box to enter the topic of the quiz
 topic = st.sidebar.text_input(
     "To change topic just enter in below. From next new quiz question the topic entered here will be used.",
-    value="devops",
+    value=st.session_state['topic'],
 )
 
 

@@ -1,5 +1,5 @@
 import streamlit as st
-#from streamlit_extras.switch_page_button import switch_page
+from streamlit_extras.switch_page_button import switch_page
 
 st.text("Please answer the follwoing questions")
 
@@ -54,8 +54,8 @@ if q1 != '':
     else:
         st.session_state['topic'] = q1
     cont = st.button('Continue')
-    # if cont:
-    #     switch_page("Contribute")
+    if cont:
+        switch_page("chat")
 
 
 
