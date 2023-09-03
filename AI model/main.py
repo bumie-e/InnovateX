@@ -2,7 +2,7 @@ import json
 
 import openai
 import streamlit as st
-from quiz import get_quiz_from_topic
+from pages.quiz import get_quiz_from_topic
 from decouple import config
 
 # Input box to enter the topic of the quiz
