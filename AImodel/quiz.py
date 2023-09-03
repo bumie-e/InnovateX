@@ -3,7 +3,7 @@ import json
 from typing import Dict
 from decouple import config
 import openai
-
+import secrets_beta
 
 openai.api_type = "azure"
 openai.api_base = config("AZURE_OPENAI_ENDPOINT") 
