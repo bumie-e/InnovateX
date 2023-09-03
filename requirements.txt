@@ -1,0 +1,8 @@
+streamlit-authenticator
+streamlit
+streamlit-chat
+openai 
+toml
+python-decouple
+streamlit_extras
+langchain
