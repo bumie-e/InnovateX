@@ -10,6 +10,7 @@ openai.api_base = config("AZURE_OPENAI_ENDPOINT")
 openai.api_version = "2023-05-15"
 openai.api_key = config("AZURE_OPENAI_KEY")
 model_name = 'innovatex2'
+
 # I have some chat history saved in a list, where each item is a dictionary representing a message with a role and content.
 chat_history = [
     {
@@ -39,12 +40,10 @@ def get_quiz_from_topic(topic: str) -> Dict[str, str]:
         "role": "user",
         "content": f"GET /generate-random-question/{topic}",
     }
-    
     current_chat.append(current_user_message)
     chat_history.append(current_user_message)
 
-   
-
+    # I use the OpenAI API to generate a response based on the current chat history.
     response = openai.ChatCompletion.create(
             engine=model_name,
             messages= current_chat, 
