@@ -6,3 +6,6 @@ toml
 python-decouple
 streamlit_extras
 langchain
+flask
+openai
+torch
