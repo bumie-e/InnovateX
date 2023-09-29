@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Conferencing App</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Video Conferencing App</h1>
+    <div id="local-stream-container">
+        <video id="local-stream" autoplay muted></video>
+    </div>
+    <div id="remote-stream-container">
+        <video id="remote-stream" autoplay></video>
+    </div>
+    <button id="join-button">Join</button>
+    <button id="leave-button">Leave</button>
+    <script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-4.2.0.js"></script>
+    <script>
+        const APP_ID = '91c053cca9ec4bcaa472997cad2f91cd';
+        const localStreamContainer = document.getElementById('local-stream-container');
+        const localStreamElement = document.getElementById('local-stream');
+        const remoteStreamElement = document.getElementById('remote-stream');
+        const joinButton = document.getElementById('join-button');
+        const leaveButton = document.getElementById('leave-button');
+        let client;
+        let localStream;
+        let remoteStream;
+
+        // Initialize the Agora client and join a channel
+        async function initializeAgora() {
+            client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+
+            // Initialize the local stream
+            localStream = AgoraRTC.createStream({
+                video: true,
+                audio: true,
+            });
+            localStream.init(() => {
+                localStream.play('local-stream');
+            });
+
+            // Join a channel
+            await client.init(APP_ID);
+            await client.join('YOUR_CHANNEL_NAME', null, 'YOUR_UID');
+        }
+
+        // Handle the "Join" button click
+        joinButton.addEventListener('click', async () => {
+            try {
+                await initializeAgora();
+                remoteStream = AgoraRTC.createStream({
+                    video: true,
+                    audio: true,
+                });
+                remoteStream.init(() => {
+                    remoteStream.play('remote-stream');
+                });
+
+                // Publish the local stream to the channel
+                await client.publish(localStream);
+                // Subscribe to remote streams
+                client.on('stream-added', async (event) => {
+                    await client.subscribe(event.stream);
+                });
+
+                // Enable/disable buttons
+                joinButton.disabled = true;
+                leaveButton.disabled = false;
+            } catch (error) {
+                console.error('Error joining channel:', error);
+            }
+        });
+
+        // Handle the "Leave" button click
+        leaveButton.addEventListener('click', async () => {
+            try {
+                // Unpublish the local stream
+                await client.unpublish(localStream);
+                localStream.close();
+                remoteStream.close();
+
+                // Leave the channel
+                await client.leave();
+
+                // Enable/disable buttons
+                joinButton.disabled = false;
+                leaveButton.disabled = true;
+            } catch (error) {
+                console.error('Error leaving channel:', error);
+            }
+        });
+    </script>
+</body>
+</html>
