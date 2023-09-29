@@ -3,31 +3,28 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>PeerChat</title>
+    <title>InnovateX</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='lobby.css'>
 </head>
 <body>
-    
     <main id="lobby-container">
         <div id="form-container">
             <div id="form__container__header">
-                <p> Create OR Join a Room</p>
+                <h1>Welcome to Innovate.X</h1>
+                <img class="img-logo" src="../img/logo.png" >
+                <p>Create or Join a Room</p>
             </div>
 
             <div id="form__content__wrapper">
                 <form id="join-form">
-                    <input type="text" name="invite_link" required/>
+                    <input type="text" name="invite_link" placeholder="Enter Room Code" required />
                     <input type="submit" value="Join Room" />
                 </form>
             </div>
         </div>
     </main>
-
-
-
 </body>
-
 <script>
     let form = document.getElementById('join-form')
 
@@ -37,5 +34,4 @@
         window.location = `index.html?room=${inviteCode}` 
     })
 </script>
-
 </html>
