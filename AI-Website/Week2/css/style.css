@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: #c6c6c6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-top: 0px;
+    color: #4d4d4d;
+
+
+}
+
+h1 {
+    font-size: 17px;
+
+}
+
+h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 400;
+}
+h5{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.bg-grey {
+    position: relative;
+    background-color: #ffffff;
+    width: 60%;
+    left: 21%;
+    height: 100vh;
+
+
+}
+
+
+
+.section-header .title {
+    position: relative;
+    left: 100px;
+    top: 120px;
+}
+
+
+.white-btn {
+    position: relative;
+    top: 140px;
+    left: 100px;
+    padding: 1.7% 30%;
+    background-color: transparent;
+    border: 1.5px solid rgb(87, 87, 87);
+    border-radius: 9px;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+    cursor: pointer;
+}
+
+.white-btn:hover {
+    background-color: rgb(87, 87, 87);
+    box-shadow: 0 0 10px rgb(87, 87, 87);
+    opacity: 0.7;
+
+}
+
+.white-btn:hover h1 {
+    color: white;
+
+
+}
+
+.alter {
+    position: relative;
+    top: 160px;
+    left: 100px;
+}
+
+form {
+    position: relative;
+    top: 200px;
+    left: 100px;
+}
+
+form input {
+    width: 80%;
+    outline: none;
+    border: 1px solid rgb(87, 87, 87);
+    background: transparent;
+    border-radius: 9px;
+    padding: 18px 14px;
+    margin-bottom: 20px;
+
+}
+
+.recover {
+    text-align: right;
+    font-size: 0.8rem;
+    margin: 0.2rem 11rem 0 0;
+}
+
+.recover a {
+    text-decoration: none;
+    color: #4d4d4d;
+}
+
+button {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-radius: 9px;
+    outline: none;
+    width: 80%;
+    background: rgb(87, 87, 87);
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgb(87, 87, 87);
+    box-shadow: 0 0 10px rgb(87, 87, 87);
+}
+
+.not-member{
+    display: flex;
+    margin-left: 23%;
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
+  }
+  .not-member h5{
+    color: #8a8a8a;
+    
+  }
+  .not-member a{
+    color: rgb(52, 52, 52);
+    text-decoration: none;
+    font-size: 15px;
+    margin-left: 5px;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  
