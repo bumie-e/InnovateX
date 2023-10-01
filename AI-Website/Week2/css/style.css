@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 body {
@@ -11,6 +10,13 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     background-color: #c6c6c6;
+}
+
+
+@media screen and (max-width: 768px) {
+    body {
+        background-color: transparent; 
+    }
 }
 
 h1,
@@ -23,13 +29,10 @@ h6 {
     font-weight: 600;
     margin-top: 0px;
     color: #4d4d4d;
-
-
 }
 
 h1 {
     font-size: 17px;
-
 }
 
 h2 {
@@ -41,7 +44,8 @@ h3 {
     font-size: 20px;
     font-weight: 400;
 }
-h5{
+
+h5 {
     font-size: 15px;
     font-weight: 500;
 }
@@ -52,11 +56,7 @@ h5{
     width: 60%;
     left: 21%;
     height: 100vh;
-
-
 }
-
-
 
 .section-header .title {
     position: relative;

@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="utf-8">
-    <title>InnovateX</title>
+    <title>InnovateX - Registration</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-   
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-   
+
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -21,36 +21,70 @@
     <div id="feature" class="section bg-grey">
         <div class="section-header text-center">
             <h2 class="title">Create Account</h2>
-            
         </div>
-        <button type="submit" id="logingoogle" class="white-btn"><h1>Sign Up with Google</h1></button>
+        <button type="button" id="logingoogle" class="white-btn"><h1>Sign Up with Google</h1></button>
         <div class="alter">
             <h3>__________________________ or Sign Up with email____________________</h3>
         </div>
-        <form>
-            <h4>Username or Email</h4>
-            <input type="text" >
+        <form id="registration-form">
+            <h4>Email</h4>
+            <input type="email" id="email" required>
             <h4>Password</h4>
-            <input type="password">
-            
-            
-            <button>Create Account</button>
+            <input type="password" id="password" required>
+            <button type="submit">Create Account</button>
             <div class="not-member">
-                <h5>Already have an account? </h5><a href="register.html"> Log In here</a>
+                <h5>Already have an account? </h5><a href="login.html"> Log In here</a>
             </div>
-            
         </form>
-          
-          
-                    
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+       apiKey: "AIzaSyBrvC81xviEbtI1hf_njdUXV_hAoWjAxDw",
+       authDomain: "innovatex-b0c57.firebaseapp.com",
+       projectId: "innovatex-b0c57",
+       storageBucket: "innovatex-b0c57.appspot.com",
+       messagingSenderId: "530263129873",
+       appId: "1:530263129873:web:27b59b7935a91f32d116b0",
+       measurementId: "G-9JLHHF2HNL"
+    };
 
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
+        const registrationForm = document.getElementById('registration-form');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
 
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+         .then((userCredential) => {
+        // User has been registered successfully
+        const user = userCredential.user;
+        console.log('User registered:', user.email);
+        
+        // Redirect the user to the login page
+        window.location.href = "login.html";
+    })
+       .catch((error) => {
+        // Handle registration errors
+        console.error('Registration error:', error.message);
+    });
+
+        });
+    </script>
 </body>
 
-</html>    
+</html>
