@@ -18,7 +18,6 @@ class Item(BaseModel):
     question: Optional[str] = None
 
 
-
 # Load the app
 app = FastAPI()
 
