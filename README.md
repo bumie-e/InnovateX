@@ -1,16 +1,17 @@
 # InnovateX
 An AI-powered content personalization platform that utilizes generative AI to explain concepts to any student based on his evaluated abilities.
 
+## Structure
+- `AI model`: This is where the AI model works on isolated from the rest of the code
+- `AI-Website`: This is the link to the website that houses everything
 
-#for the chatbot#
-If you have Python & pip installed then check their version in the terminal or command line tools
+## Purpose
+- To allow easy code contribution and code management
 
-python3 --version
+## How Generative AI Models are Solving the Problem
 
-pip --version
+We're leveraging Gen AI to
 
-#Installing Flask#
-
-In your terminal run the requirements.txt file using this pip
-
-pip install -r requirements.txt
+- Explain a concept based on an evaluation of your current knowledge and capability
+- Suggest videos, podcasts, and research papers that explain a concept better
+- Query a video to find the exact content

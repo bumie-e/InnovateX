@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>InnovateX - Login</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="feature" class="section bg-grey">
+        <div class="section-header text-center">
+            <h2 class="title">Log In</h2>
+        </div>
+        <button type="button" id="logingoogle" class="white-btn"><h1>Log In with Google</h1></button>
+        <div class="alter">
+            <h3>__________________________ or Log In with email____________________</h3>
+        </div>
+        <form id="login-form">
+            <h4>Email</h4>
+            <input type="email" id="email" required>
+            <h4>Password</h4>
+            <input type="password" id="password" required>
+            <button type="submit">Log In</button>
+            <div class="not-member">
+                <h5>Don't have an account? </h5><a href="register.html"> Sign Up here</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+       apiKey: "AIzaSyBrvC81xviEbtI1hf_njdUXV_hAoWjAxDw",
+       authDomain: "innovatex-b0c57.firebaseapp.com",
+       projectId: "innovatex-b0c57",
+       storageBucket: "innovatex-b0c57.appspot.com",
+       messagingSenderId: "530263129873",
+       appId: "1:530263129873:web:27b59b7935a91f32d116b0",
+       measurementId: "G-9JLHHF2HNL"
+    };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loginForm = document.getElementById('login-form');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            signInWithEmailAndPassword(auth, email, password)
+           .then((userCredential) => {
+        // User has been logged in successfully
+             const user = userCredential.user;
+             console.log('Logged in as:', user.email);
+        
+        // Redirect the user to the dashboard
+        window.location.href = "../index.html";
+    })
+          .catch((error) => {
+         // Handle login errors
+         console.error('Login error:', error.message);
+    });
+
+        });
+    </script>
+</body>
+
+</html>
