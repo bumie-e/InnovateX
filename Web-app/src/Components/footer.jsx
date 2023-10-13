@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <footer></footer>
+      <footer className=" bg-[#2A2954]"></footer>
     </>
   );
 }
