@@ -9,11 +9,38 @@
   font-family: "Cabin", sans-serif;
 }
 
+@layer base {
+  h1 {
+    @apply font-bold text-[40px] lg:text-[64px] text-[#333333];
+  }
+  input {
+    @apply outline-none  border-[#D0D5DD] border-[1px] py-[10px] px-[13px] rounded-lg;
+  }
+  h2 {
+    @apply font-bold text-[32px] lg:text-[40px] text-[#333333];
+  }
+  h3 {
+    @apply font-semibold text-[22px] lg:text-[28px] text-[#333333];
+  }
+}
+
 @layer utilities {
+  .settings-form-field {
+    @apply flex flex-col;
+  }
+  .settings-form-field input {
+    @apply outline-none min-w-[300px] lg:w-[540px] border-[#D0D5DD] border-[1px] py-[10px] px-[13px] rounded-lg;
+  }
   .flex-center {
     @apply flex justify-center items-center;
   }
   .flex-between {
     @apply flex justify-between items-center;
+  }
+  .small-heading {
+    @apply text-[#FA835C] border-[#FA835C];
+  }
+  .card {
+    @apply grid place-items-center grid-cols-1 lg:grid-cols-2  gap-[28px];
   }
 }
