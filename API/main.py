@@ -5,6 +5,7 @@ from chat import get_chat_response
 from quiz import get_quiz_from_topic
 from rpaper import query_API
 from podcast import query_podcast_api
+from translate import translate_lang
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -17,6 +18,7 @@ class Item(BaseModel):
     interaction_needed: Optional[str] = None
     specific_example: Optional[str] = None
     question: Optional[str] = None
+    text: Optional[str] = None
 
 
 # Load the app
@@ -74,6 +76,12 @@ async def podcast(item:Item):
 @app.post("/rpaper")
 async def rpaper(item: Item):
     response  = query_API(item.topic)
+    return {"message": f"{response}"}
+
+# Define root
+@app.post("/translate")
+async def translate(item: Item):
+    response = translate_lang(item.language, item.text)
     return {"message": f"{response}"}
 
 # Define root
