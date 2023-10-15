@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 class Item(BaseModel):
+    language: Optional[str] = 'English'
     topic: str
     explanation_level: Optional[str] = None
     prior_knowledge: Optional[str] = None
@@ -36,7 +37,7 @@ async def chat(item: Item):
         item.interaction_needed = "I prefer an interactive learning experience with opportunities for feedback"
     else:
         item.interaction_needed=''
-    if item.explanation_level == 'Advanced insights?':
+    if item.explanation_level == 'Advanced insights':
         item.explanation_level = "I'm looking to expand my knowledge in"
     else:
         item.explanation_level = 'I need an introducton to'
@@ -47,7 +48,7 @@ async def chat(item: Item):
         {item.interaction_needed}. Please explain {item.topic} using {item.explanation_type}. 
         Additionally, can you {item.specific_example} make it more engaging and relevant to my interests?"""
 
-    response = get_chat_response(prompt)
+    response = get_chat_response(prompt, item.language)
     return {"message": f"{response}"}
 
 # Define root

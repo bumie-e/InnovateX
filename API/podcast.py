@@ -12,8 +12,6 @@ def query_podcast_api(query):
     sort_by_date=0,
     type='episode',
     offset=0,
-    # len_min=10,
-    # len_max=30,
     published_before=1580172454000,
     published_after=0,
     only_in='title,description',
