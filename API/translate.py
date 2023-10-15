@@ -18,6 +18,21 @@ constructed_url = endpoint + path
 # "sw":{"name":"Swahili","nativeName":"Kiswahili","dir":"ltr"}
 
 def translate_lang(target_language, text):
+    # Setting target language
+    if target_language == 'English':
+        target_language = 'en'
+    elif target_language == 'Yoruba':
+        target_language = 'yo'
+    elif target_language == 'Zulu':
+        target_language = 'zu'
+    elif target_language == 'Hausa':
+        target_language = 'ha'
+    elif target_language == 'Russian :ru:':
+        target_language = 'ru'
+    elif target_language == 'Igbo':
+        target_language = 'ig'
+    elif target_language == 'Swahili':
+        target_language = 'sw'
 
     params = {
         'api-version': '3.0',
@@ -36,12 +51,15 @@ def translate_lang(target_language, text):
     body = [{
         'text': text
     }]
-    try:
-        request = requests.post(constructed_url, params=params, headers=headers, json=body)
-        response = request.json()
-        print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separators=(',', ': ')))
-    except Exception as e:
-        print('Error is', e)
+    if target_language !='en':
+        try:
+            request = requests.post(constructed_url, params=params, headers=headers, json=body)
+            response = request.json()
+            print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separators=(',', ': ')))
+        except Exception as e:
+            print('Error is', e)
+    else:
+        response = text
 
     return response
     # print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separators=(',', ': ')))
