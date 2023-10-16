@@ -1,5 +1,7 @@
 import logo from "/assets/chat_logo.png";
-function Sidebar() {
+import { PropTypes } from "prop-types";
+
+function Sidebar({ isOpen, setIsOpen }) {
   return (
     <>
       {/* desktop */}
@@ -7,7 +9,7 @@ function Sidebar() {
         className="hidden lg:block h-full fixed z-10 top-0 left-0 bg-white w-[309px]
       overflow-x-hidden pt-7 border-[#E6E5EE] border-r-[1px] pl-6 pr-4"
       >
-        <div className="flex flex-col ">
+        <div className="flex flex-col justify-between h-full ">
           <div>
             <img src={logo} alt="" />
 
@@ -44,7 +46,7 @@ function Sidebar() {
           </div>
 
           {/* profile */}
-          <div className="flex-between ">
+          <div className="flex-between py-8 px-7">
             <div>
               <img src="" alt="" />
               <span>Bunmi Akinremi</span>
@@ -58,14 +60,27 @@ function Sidebar() {
       </div>
 
       {/* mobile */}
-      <div
-        className="lg:hidden h-full fixed z-10 top-0 left-0 pl-6 pr-4 w-[309px]
-      overflow-x-hidden pt-7 border-[#E6E5EE] border-r-[1px]  bg-white"
-      >
-        <img src={logo} alt="" />
-      </div>
+      {isOpen && (
+        <div
+          className="lg:hidden h-full fixed z-20 top-0 left-0 pl-6 pr-4 w-[309px]
+      overflow-x-hidden pt-7 border-[#E6E5EE] border-r-[1px]   bg-white"
+        >
+          <div
+            className="absolute top-10 right-0 bg-red-400 py-2 px-4 "
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            x
+          </div>
+
+          <img src={logo} alt="" />
+        </div>
+      )}
     </>
   );
 }
 
+Sidebar.propTypes = {
+  isOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
+};
 export default Sidebar;
