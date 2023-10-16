@@ -31,15 +31,14 @@ function Register() {
     setInput((prev) => ({ ...prev, [name]: value }));
     setErrors({ ...errors, [name]: "" });
   }
-
   const firebaseConfig = {
-    apiKey: "AIzaSyChvU1OBUnBEXy3tKkPSkNxOp-rWZ3MePI",
-    authDomain: "localhost",
-    projectId: "innovatex-3a557",
-    storageBucket: "innovatex-3a557.appspot.com",
-    messagingSenderId: "258300814395",
-    appId: "1:258300814395:web:12488605ac647dcd8a281e",
-    measurementId: "G-DHPYWQQVK7",
+    apiKey: import.meta.env.VITE_FIREBASE_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
   };
 
   const app = initializeApp(firebaseConfig);
@@ -52,10 +51,10 @@ function Register() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         toast("User created successfully"); // Display a success toast
         setTimeout(() => {
-          navigate("/dashboard"); // Redirect to the login page
+          navigate("/login"); // Redirect to the login page
         }, 3000);
 
         // ...
@@ -76,7 +75,7 @@ function Register() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       })

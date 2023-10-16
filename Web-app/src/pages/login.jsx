@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -29,29 +31,34 @@ function Login() {
   }
 
   const firebaseConfig = {
-    apiKey: "AIzaSyChvU1OBUnBEXy3tKkPSkNxOp-rWZ3MePI",
-    authDomain: "localhost",
-    projectId: "innovatex-3a557",
-    storageBucket: "innovatex-3a557.appspot.com",
-    messagingSenderId: "258300814395",
-    appId: "1:258300814395:web:12488605ac647dcd8a281e",
-    measurementId: "G-DHPYWQQVK7",
+    apiKey: import.meta.env.VITE_FIREBASE_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
   };
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
     const { email, password } = input;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
-        navigate("/dashboard");
+        // console.log(user);
+        toast("User created successfully"); // Display a success toast
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 3000);
         // ...
       })
       .catch((error) => {
+        console.log(error);
         const errorCode = error.code;
         const errorMessage = error.message;
       });
@@ -59,7 +66,7 @@ function Login() {
 
   // login with google
   const loginWithGoogle = () => {
-    const provider = new auth.GoogleAuthProvider();
+    const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -67,7 +74,7 @@ function Login() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       })
@@ -142,6 +149,7 @@ function Login() {
               <button className=" bg-pry-col mt-4 text-white w-full py-4 rounded-lg">
                 Log In
               </button>
+              <ToastContainer />
 
               <div className=" mt-4 text-center">
                 <span>Don&apos;t have an account yet?</span>
