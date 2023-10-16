@@ -8,7 +8,15 @@
   padding: 0;
   font-family: "Cabin", sans-serif;
 }
-
+.start-learning {
+  background-color: linear-gradient(
+    94deg,
+    rgba(139, 138, 187, 0.75) -4.72%,
+    rgba(172, 171, 222, 0.56) 56.34%,
+    rgba(123, 106, 169, 0.66) 117.42%,
+    rgba(107, 106, 169, 0.66) 117.42%
+  );
+}
 @layer base {
   h1 {
     @apply font-bold text-[40px] lg:text-[64px] text-[#333333];

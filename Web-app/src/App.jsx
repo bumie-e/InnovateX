@@ -4,8 +4,10 @@ import step_one from "/assets/step_one.png";
 import step_two from "/assets/step_two.png";
 import step_three from "/assets/step_three.png";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <Header />
@@ -203,7 +205,7 @@ function App() {
         </section>
 
         {/* pricing */}
-        <section>
+        <section className=" mx-auto max-w-[1140px] pb-16 lg:pb-20">
           <div className=" pt-20 lg:pt-[120px] text-center">
             <p className="small-heading ">PRICING</p>
             <h2 className=" mt-8 mb-4">There&apos;s a Plan for Everyone</h2>
@@ -215,8 +217,224 @@ function App() {
           </div>
 
           {/*pricing cards */}
-          <div>
-            <div></div>
+          <div className="grid gap-[28px] grid-cols-1 lg:grid-cols-3 place-items-center mt-16">
+            <div
+              className=" py-10 px-[68px] border-[#D1CDD7] border-[1px] 
+             rounded-xl"
+            >
+              <p className=" font-semibold text-2xl">Basic</p>
+              <div className="">
+                <ul className=" font-normal text-xl  mt-6 mb-8">
+                  <li>1 Week duration </li>
+                  <li>6 Credits</li>
+                </ul>
+                <p className=" font-bold text-2xl">$1.00</p>
+              </div>
+
+              <button
+                className="text-pry-col border-pry-col border-[1px] py-[18px]
+                px-5 lg:px-10 font-semibold text-base mt-10 rounded-lg"
+              >
+                Try for Free
+              </button>
+            </div>
+
+            {/* Silver */}
+            <div
+              className=" py-10 px-[68px] border-[#D1CDD7] border-[1px] 
+             rounded-xl"
+            >
+              <p className=" font-semibold text-2xl">Silver</p>
+              <div className="">
+                <ul className=" font-normal text-xl  mt-6 mb-8">
+                  <li>1 Month duration</li>
+                  <li>60 Credits</li>
+                </ul>
+                <p className=" font-bold text-2xl">$10.00</p>
+              </div>
+
+              <button
+                className="text-pry-col border-pry-col border-[1px] py-[18px]
+                px-5 lg:px-10 font-semibold text-base mt-10 rounded-lg"
+              >
+                Try for Free
+              </button>
+            </div>
+
+            {/* Gold */}
+            <div
+              className=" py-10 px-[68px] border-[#D1CDD7] border-[1px] 
+             rounded-xl"
+            >
+              <p className=" font-semibold text-2xl">Gold</p>
+              <div className="">
+                <ul className=" font-normal text-xl  mt-6 mb-8">
+                  <li>1 Year duration</li>
+                  <li>6 Credits</li>
+                </ul>
+                <p className=" font-bold text-2xl">$100.00</p>
+              </div>
+
+              <button
+                className="text-pry-col border-pry-col border-[1px] py-[18px]
+                px-5 lg:px-10 font-semibold text-base mt-10 rounded-lg"
+              >
+                Try for Free
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        <section className=" mx-auto max-w-[1140px] pb-16 lg:pb-20">
+          <div className=" pt-20 lg:pt-[120px] text-center">
+            <p className="small-heading ">TESTIMONIALS</p>
+            <h2 className=" mt-8 mb-4">Here&apos;s What Our Users Say</h2>
+            <p className=" sm:max-w-[740px] mx-auto">
+              Discover how our platform is making a difference in the lives of
+              students. Read what our early adopters have to say about their
+              personalized learning journey with us.
+            </p>
+          </div>
+
+          <div className="flex gap-[28px] overflow-x-auto">
+            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+              <img src="" alt="" />
+              <p>
+                Get an at-a-glance overview of your learning journey and
+                achievements and track your progress, view personalized
+                recommendations, and manage your quizzes.
+              </p>
+
+              <span className=" font-bold text-base">Bunmi Akinremi</span>
+            </div>
+            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+              <img src="" alt="" />
+              <p>
+                Get an at-a-glance overview of your learning journey and
+                achievements and track your progress, view personalized
+                recommendations, and manage your quizzes.
+              </p>
+
+              <span className=" font-bold text-base">Bunmi Akinremi</span>
+            </div>
+            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+              <img src="" alt="" />
+              <p>
+                Get an at-a-glance overview of your learning journey and
+                achievements and track your progress, view personalized
+                recommendations, and manage your quizzes.
+              </p>
+
+              <span className=" font-bold text-base">Bunmi Akinremi</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="text-center start-learning px-6 py-12 mx-4 lg:mx-auto max-w-7xl">
+          <h2>Start Your Journey to Personalized Learning</h2>
+
+          <div className=" lg:flex-center gap-8 mt-12">
+            <button className=" rounded-lg bg-pry-col mb-5 text-white py-4 px-14">
+              Try for Free
+            </button>
+
+            <div>
+              <img src="" alt="" /> <span>Watch Demo</span>
+            </div>
+          </div>
+        </section>
+
+        {/* faq */}
+        <section className="bg-[#EEEDF5]">
+          <div className="flex flex-col lg:flex-row gap-5 lg:gap-10 mx-4 lg:mx-auto max-w-7xl">
+            <h2>Frequently Asked Question</h2>
+
+            {/* faqs */}
+            <div className=" max-w-md">
+              <div>
+                <div className="flex-between gap-2">
+                  <p>What is personalized content learning?</p>
+                  {!isOpen ? (
+                    <span
+                      className=" cursor-pointer"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      +
+                    </span>
+                  ) : (
+                    <span
+                      className=" cursor-pointer"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      -
+                    </span>
+                  )}
+                </div>
+
+                {isOpen && <div>contents</div>}
+              </div>
+
+              <div>
+                <div className="flex-between gap-2">
+                  <p>How do I get started with the platform?</p>
+                  {!isOpen ? (
+                    <span
+                      className=" cursor-pointer"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      +
+                    </span>
+                  ) : (
+                    <span
+                      className=" cursor-pointer"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      -
+                    </span>
+                  )}
+                </div>
+
+                {isOpen && (
+                  <div>
+                    Getting started is easy! Simply sign up for an account,
+                    answer a few questions to help us understand your learning
+                    preferences, and you&apos;ll be on your way to personalized
+                    learning.
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <div className="flex-between gap-2">
+                  <p>How does the evaluation process work?</p>
+                  {!isOpen ? (
+                    <span
+                      className=" cursor-pointer"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      +
+                    </span>
+                  ) : (
+                    <span
+                      className=" cursor-pointer"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      -
+                    </span>
+                  )}
+                </div>
+
+                {isOpen && (
+                  <div>
+                    Getting started is easy! Simply sign up for an account,
+                    answer a few questions to help us understand your learning
+                    preferences, and you&apos;ll be on your way to personalized
+                    learning.
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </section>
       </main>
