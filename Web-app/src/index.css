@@ -38,7 +38,7 @@
     @apply flex justify-between items-center;
   }
   .small-heading {
-    @apply text-[#FA835C] border-[#FA835C];
+    @apply text-[#FA835C] border-[#FA835C] border-[1px] inline-block px-8 py-[10px] rounded-lg;
   }
   .card {
     @apply grid place-items-center grid-cols-1 lg:grid-cols-2  gap-[28px];
