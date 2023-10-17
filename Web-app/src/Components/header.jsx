@@ -10,12 +10,12 @@ function Header() {
       <header className="bg-[#EFECF5] px-8">
         <div className=" flex-between mx-auto py-6 max-w-[1140px] ">
           <div>
-            <img src={logo} alt="" />
+            <img src={logo} width={121} alt="" />
           </div>
           {/* desktop nav */}
           <nav className="hidden lg:flex ">
             <div>
-              <div>
+              <div className="flex gap-8 ">
                 <a href="#">Features</a>
                 <a href="#">How it Works</a>
                 <a href="#">Pricing</a>
@@ -33,7 +33,12 @@ function Header() {
 
           {/* harmburger menu */}
           <div className=" lg:hidden ">
-            <img src={menu} onClick={() => setIsOpen(!isOpen)} alt="" />
+            <img
+              src={menu}
+              width={32}
+              onClick={() => setIsOpen(!isOpen)}
+              alt=""
+            />
           </div>
 
           {/* mobile nav */}
