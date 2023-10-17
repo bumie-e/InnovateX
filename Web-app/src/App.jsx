@@ -4,10 +4,8 @@ import step_one from "/assets/step_one.png";
 import step_two from "/assets/step_two.png";
 import step_three from "/assets/step_three.png";
 import "./App.css";
-import { useState } from "react";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <Header />
@@ -347,92 +345,317 @@ function App() {
 
         {/* faq */}
         <section className="bg-[#EEEDF5]">
-          <div className="flex flex-col lg:flex-row gap-5 lg:gap-10 mx-4 lg:mx-auto max-w-7xl">
-            <h2>Frequently Asked Question</h2>
+          <div
+            className="flex flex-col items-center lg:items-start justify-center py-16 lg:py-[120px] px-4 lg:flex-row gap-5
+           lg:gap-10  max-w-lg mx-auto lg:max-w-7xl"
+          >
+            <div></div>
+            <h2 className=" text-left self-start">Frequently Asked Question</h2>
 
             {/* faqs */}
-            <div className=" max-w-md">
+            <div className=" max-w-lg mt-10 lg:mt-0">
+              {/*     What is personalized content learning? */}
               <div>
-                <div className="flex-between gap-2">
-                  <p>What is personalized content learning?</p>
-                  {!isOpen ? (
-                    <span
-                      className=" cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      +
-                    </span>
-                  ) : (
-                    <span
-                      className=" cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      -
-                    </span>
-                  )}
-                </div>
-
-                {isOpen && <div>contents</div>}
+                <details className="group" open>
+                  <summary
+                    className="flex cursor-pointer list-none items-center
+                   justify-between py-4 text-lg lg:text-[22px] font-semibold 
+                   text-secondary-900 group-open:text-primary-500"
+                  >
+                    What is personalized content learning?
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="block h-5 w-5 group-open:hidden"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="hidden h-5 w-5 group-open:block"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 12h-15"
+                        />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="pb-4 font-normal text-sm lg:text-lg">
+                    This is the first item&apos;s accordion body.
+                  </div>
+                </details>
               </div>
 
+              {/* How do I get started with the platform? */}
               <div>
-                <div className="flex-between gap-2">
-                  <p>How do I get started with the platform?</p>
-                  {!isOpen ? (
-                    <span
-                      className=" cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      +
-                    </span>
-                  ) : (
-                    <span
-                      className=" cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      -
-                    </span>
-                  )}
-                </div>
-
-                {isOpen && (
-                  <div>
+                <details className="group">
+                  <summary
+                    className="flex cursor-pointer list-none items-center justify-between 
+                  py-4 text-lg  lg:text-[22px] font-semibold  text-secondary-900 group-open:text-primary-500"
+                  >
+                    How do I get started with the platform?
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="block h-5 w-5 group-open:hidden"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="hidden h-5 w-5 group-open:block"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 12h-15"
+                        />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="pb-4 font-normal text-sm lg:text-lg">
                     Getting started is easy! Simply sign up for an account,
                     answer a few questions to help us understand your learning
                     preferences, and you&apos;ll be on your way to personalized
                     learning.
                   </div>
-                )}
+                </details>
               </div>
 
+              {/* How does the evaluation process work? */}
               <div>
-                <div className="flex-between gap-2">
-                  <p>How does the evaluation process work?</p>
-                  {!isOpen ? (
-                    <span
-                      className=" cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      +
-                    </span>
-                  ) : (
-                    <span
-                      className=" cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      -
-                    </span>
-                  )}
-                </div>
-
-                {isOpen && (
-                  <div>
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg  lg:text-[22px] font-semibold  text-secondary-900 group-open:text-primary-500">
+                    How does the evaluation process work?
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="block h-5 w-5 group-open:hidden"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="hidden h-5 w-5 group-open:block"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 12h-15"
+                        />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="pb-4 tfont-normal text-sm lg:text-lg">
                     Getting started is easy! Simply sign up for an account,
-                    answer a few questions to help us understand your learning
-                    preferences, and you&apos;ll be on your way to personalized
-                    learning.
                   </div>
-                )}
+                </details>
+              </div>
+
+              {/* Can I change my evaluated abilities later? */}
+              <div>
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg  lg:text-[22px] font-semibold  text-secondary-900 group-open:text-primary-500">
+                    Can I change my evaluated abilities later?
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="block h-5 w-5 group-open:hidden"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="hidden h-5 w-5 group-open:block"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 12h-15"
+                        />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="pb-4 font-normal text-sm lg:text-lg">
+                    Getting started is easy! Simply sign up for an account,
+                  </div>
+                </details>
+              </div>
+
+              {/* What subjects and languages are available on the platform? */}
+              <div>
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg  lg:text-[22px] font-semibold  text-secondary-900 group-open:text-primary-500">
+                    What subjects and languages are available on the platform?
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="block h-5 w-5 group-open:hidden"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="hidden h-5 w-5 group-open:block"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 12h-15"
+                        />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="pb-4 font-normal text-sm lg:text-lg">
+                    Getting started is easy! Simply sign up for an account,
+                  </div>
+                </details>
+              </div>
+
+              {/* Can I use the platform on mobile devices? */}
+              <div>
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg  lg:text-[22px] font-semibold  text-secondary-900 group-open:text-primary-500">
+                    Can I use the platform on mobile devices?
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="block h-5 w-5 group-open:hidden"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="hidden h-5 w-5 group-open:block"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 12h-15"
+                        />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="pb-4 font-normal text-sm lg:text-lg">
+                    Getting started is easy! Simply sign up for an account,
+                  </div>
+                </details>
+              </div>
+
+              {/* Is there a free trial available?*/}
+              <div>
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg  lg:text-[22px] font-semibold  text-secondary-900 group-open:text-primary-500">
+                    Is there a free trial available?
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="block h-5 w-5 group-open:hidden"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="hidden h-5 w-5 group-open:block"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 12h-15"
+                        />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="pb-4 font-normal text-sm lg:text-lg">
+                    Getting started is easy! Simply sign up for an account,
+                  </div>
+                </details>
               </div>
             </div>
           </div>
