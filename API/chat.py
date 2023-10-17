@@ -17,7 +17,7 @@ lang_endpoint = config('LANG_ENDPOINT')
 lang_location = config('LANG_LOCATION')
 
 # Map model names to OpenAI model IDs
-deployment_name = "lang-chain"
+deployment_name = config("model_name")
 model_name = ''
 
 # Set up the header information, which includes our subscription key
