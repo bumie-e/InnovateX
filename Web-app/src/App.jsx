@@ -3,6 +3,15 @@ import Footer from "./Components/footer";
 import step_one from "/assets/step_one.png";
 import step_two from "/assets/step_two.png";
 import step_three from "/assets/step_three.png";
+import quote from "/assets/quote.png";
+import language from "/assets/language.png";
+import quiz from "/assets/quiz.png";
+import chat from "/assets/chat.png";
+import dashboard from "/assets/dashboard.png";
+import progress from "/assets/progress.png";
+import resource from "/assets/resource.png";
+import hero from "/assets/hero.png";
+
 import "./App.css";
 
 function App() {
@@ -11,7 +20,10 @@ function App() {
       <Header />
       <main>
         {/* hero section */}
-        <section className="text-center bg-[#EFECF5] pt-16 lg:pt-[120px]">
+        <section
+          className="text-center flex-center flex-col bg-[#EFECF5] pt-16
+         lg:pt-[120px] pb-10 lg:pb-20 px-4"
+        >
           <h1>Unlock Your Learning Potential with Personalized Education</h1>
           <p className="mt-6 mb-10 max-w-[683px] mx-auto">
             An AI-powered content personalization platform that utilizes
@@ -28,8 +40,9 @@ function App() {
             </div>
           </div>
 
-          <div className="mx-[25px] mt-20 lg:mt-24">
-            <div className="bg-[#2A2957] w-auto h-[502px]  rounded-t-[16px] max-w-[1140px] mx-auto"></div>
+          <div className="mx-[25px] mt-20 lg:mt-24 ">
+            <img src={hero} alt="hero-bg" />
+            {/* <div className="bg-[#2A2957] w-auto h-[502px]  rounded-t-[16px] max-w-[1140px] mx-auto"></div> */}
           </div>
         </section>
 
@@ -49,73 +62,92 @@ function App() {
           <div className=" text-[#454545]  card mt-16 bg-feature-bg">
             {/* row one */}
             {/* Dashboard */}
-            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Dashboard</h3>
-              <p>
-                Get an at-a-glance overview of your learning journey and
-                achievements and track your progress, view personalized
-                recommendations, and manage your quizzes.
-              </p>
+            <div
+              className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD]
+             border-[1px] rounded-xl"
+            >
+              <img src={dashboard} alt="" />
+              <div>
+                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Dashboard</h3>
+                <p>
+                  Get an at-a-glance overview of your learning journey and
+                  achievements and track your progress, view personalized
+                  recommendations, and manage your quizzes.
+                </p>
+              </div>
             </div>
 
             {/* Chat */}
-            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Chat</h3>
-              <p>
-                Have burning questions? Our AI-powered chat feature is here to
-                help! Engage in real-time conversations with our virtual tutor
-                to grasp concepts better.
-              </p>
+            <div
+              className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD]
+             border-[1px] rounded-xl"
+            >
+              <img src={chat} alt="" />
+              <div>
+                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Chat</h3>
+                <p>
+                  Have burning questions? Our AI-powered chat feature is here to
+                  help! Engage in real-time conversations with our virtual tutor
+                  to grasp concepts better.
+                </p>
+              </div>
             </div>
 
             {/* row two */}
             {/* Quiz */}
-            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Quiz</h3>
-              <p>
-                Take your learning to the next level with interactive quizzes.
-                Choose between individual quizzes for focused review or team
-                quizzes for collaborative learning.
-              </p>
+            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+              <img src={quiz} alt="" />
+
+              <div>
+                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Quiz</h3>
+                <p>
+                  Take your learning to the next level with interactive quizzes.
+                  Choose between individual quizzes for focused review or team
+                  quizzes for collaborative learning.
+                </p>
+              </div>
             </div>
 
             {/* Language Options */}
-            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Language Options</h3>
-              <p>
-                Choose your preferred learning language from a selection of
-                English, French, German, or Japanese. Customize your experience
-                to best suit your linguistic preferences.
-              </p>
+            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+              <img src={language} alt="" />
+              <div>
+                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Language Options</h3>
+                <p>
+                  Choose your preferred learning language from a selection of
+                  English, French, German, or Japanese. Customize your
+                  experience to best suit your linguistic preferences.
+                </p>
+              </div>
             </div>
 
             {/* row three */}
             {/* Resource Suggestions */}
-            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">
-                Resource Suggestions
-              </h3>
-              <p>
-                Explore a curated list of research papers and podcasts that
-                delve deeper into your chosen topics. Expand your understanding
-                with additional resources recommended by our AI.
-              </p>
+            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+              <img src={resource} alt="" />
+              <div>
+                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">
+                  Resource Suggestions
+                </h3>
+                <p>
+                  Explore a curated list of research papers and podcasts that
+                  delve deeper into your chosen topics. Expand your
+                  understanding with additional resources recommended by our AI.
+                </p>
+              </div>
             </div>
 
             {/* Progress Tracker */}
-            <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Progress Tracker</h3>
-              <p>
-                Visualize your learning journey with our intuitive progress
-                tracker. See how far you&apos;ve come and get insights into the
-                concepts you&apos;ve mastered.
-              </p>
+            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+              <img src={progress} alt="" />
+              <div>
+                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Progress Tracker</h3>
+                <p>
+                  Visualize your learning journey with our intuitive progress
+                  tracker. See how far you&apos;ve come and get insights into
+                  the concepts you&apos;ve mastered.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -284,21 +316,21 @@ function App() {
         </section>
 
         {/* TESTIMONIALS */}
-        <section className=" mx-auto max-w-[1140px] pb-16 lg:pb-20">
-          <div className=" pt-20 lg:pt-[120px] text-center">
+        <section className=" mx-auto max-w-[1140px] pb-16 lg:pb-20 px-4">
+          <div className=" pt-20 lg:pt-[120px] text-left">
             <p className="small-heading ">TESTIMONIALS</p>
             <h2 className=" mt-8 mb-4">Here&apos;s What Our Users Say</h2>
-            <p className=" sm:max-w-[740px] mx-auto">
+            <p className=" sm:max-w-[740px] ">
               Discover how our platform is making a difference in the lives of
               students. Read what our early adopters have to say about their
               personalized learning journey with us.
             </p>
           </div>
 
-          <div className="flex gap-[28px] overflow-x-auto">
+          <div className="flex-between gap-[28px] mt-16 overflow-x-auto ">
             <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <p>
+              <img src={quote} alt="" />
+              <p className="w-[361px] lg:w-[242px] mt-10 mb-4">
                 Get an at-a-glance overview of your learning journey and
                 achievements and track your progress, view personalized
                 recommendations, and manage your quizzes.
@@ -307,8 +339,8 @@ function App() {
               <span className=" font-bold text-base">Bunmi Akinremi</span>
             </div>
             <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <p>
+              <img src={quote} alt="" />
+              <p className="w-[361px] lg:w-[242px]  mt-10 mb-4">
                 Get an at-a-glance overview of your learning journey and
                 achievements and track your progress, view personalized
                 recommendations, and manage your quizzes.
@@ -317,8 +349,8 @@ function App() {
               <span className=" font-bold text-base">Bunmi Akinremi</span>
             </div>
             <div className="  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src="" alt="" />
-              <p>
+              <img src={quote} alt="" />
+              <p className="w-[361px] lg:w-[242px]  mt-10 mb-4">
                 Get an at-a-glance overview of your learning journey and
                 achievements and track your progress, view personalized
                 recommendations, and manage your quizzes.
@@ -329,11 +361,14 @@ function App() {
           </div>
         </section>
 
-        <section className="text-center start-learning px-6 py-12 mx-4 lg:mx-auto max-w-7xl">
+        <section
+          className="text-center start-learning px-6 py-12 mx-4 lg:mx-auto 
+        max-w-7xl my-10 lg:my-20"
+        >
           <h2>Start Your Journey to Personalized Learning</h2>
 
-          <div className=" lg:flex-center gap-8 mt-12">
-            <button className=" rounded-lg bg-pry-col mb-5 text-white py-4 px-14">
+          <div className=" lg:flex-center items-center gap-8 mt-12">
+            <button className=" rounded-lg bg-pry-col mb-5 lg:mb-0 text-white py-4 px-14">
               Try for Free
             </button>
 

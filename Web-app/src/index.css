@@ -9,7 +9,7 @@
   font-family: "Cabin", sans-serif;
 }
 .start-learning {
-  background-color: linear-gradient(
+  background: linear-gradient(
     94deg,
     rgba(139, 138, 187, 0.75) -4.72%,
     rgba(172, 171, 222, 0.56) 56.34%,
@@ -48,7 +48,13 @@
   .small-heading {
     @apply text-[#FA835C] border-[#FA835C] border-[1px] inline-block px-8 py-[10px] rounded-lg;
   }
-  .card {
+  /* .card {
     @apply grid place-items-center grid-cols-1 lg:grid-cols-2  gap-[28px];
+  } */
+  .card {
+    @apply flex flex-wrap gap-[28px] justify-center;
+  }
+  .card > div {
+    @apply w-[468px];
   }
 }
