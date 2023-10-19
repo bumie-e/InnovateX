@@ -5,6 +5,8 @@ import ChatOnboarding from "../Components/chatOnboarding";
 import NewChat from "../Components/newChat";
 import menu from "/assets/menu.png";
 
+
+
 function Chat() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,7 +19,7 @@ function Chat() {
         {/* desktop */}
         <header
           className="hidden lg:flex border-[#E6E5EE] border-b-[1px]  
-        lg:justify-between px-16 py-9"
+        lg:justify-between px-16 py-5 lg:items-center"
         >
           {" "}
           <p className="font-semibold text-[32px]">Chat</p>
@@ -30,7 +32,7 @@ function Chat() {
         {/* mobile */}
         <header
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
-        px-16 py-9 flex-between"
+        px-16 py-4 flex-between"
         >
           <img src={menu} onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
           <p className="font-semibold text-[32px]">Chat</p>

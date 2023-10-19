@@ -1,6 +1,13 @@
 import logo from "/assets/chat_logo.png";
 import { PropTypes } from "prop-types";
 
+import plus from "/assets/dashboard/plus.png";
+import User from "/assets/dashboard/User.png";
+import more from "/assets/dashboard/more.png";
+import podcast from "/assets/dashboard/podcast.png";
+import videos from "/assets/dashboard/videos.png";
+import right from "/assets/dashboard/ci_chevron-right.png";
+import research from "/assets/dashboard/mdi_papers-outlineresearch.png";
 function Sidebar({ isOpen, setIsOpen }) {
   return (
     <>
@@ -16,16 +23,16 @@ function Sidebar({ isOpen, setIsOpen }) {
             {/* New Topic */}
             <button
               className="border-[1px] border-pry-col rounded-lg pl-6 py-[22px] w-full
-       text-left mt-10 mb-5"
+       text-left mt-10 mb-5 flex items-center "
             >
-              <img src="" alt="" />
-              <span className=" font-semibold text-lg text-pry-col">
+              <img src={plus} alt="" />
+              <span className="ml-6 font-semibold text-lg text-pry-col">
                 New Topic
               </span>
             </button>
 
             {/* Topics */}
-            <div>
+            <div className=" font-semibold text-base text-[#7C7C8C]">
               <p>Topics</p>
 
               <div>
@@ -35,25 +42,38 @@ function Sidebar({ isOpen, setIsOpen }) {
           </div>
 
           {/* Suggestions */}
-          <div>
+          <div className=" border-t-[#E6E5EE] border-t-[1px] pt-5">
             <p>Suggestions</p>
 
-            <div>
-              <img src="" alt="" />
-              <p>Podcasts</p>
-              <img src="" alt="" />
+            {/* podcasts */}
+            <div className="flex flex-col gap-4">
+              <div className="flex-between">
+                <div className="flex gap-3 items-center">
+                  <img src={podcast} alt="" />
+                  <p>Podcasts</p>
+                </div>
+                <img src={right} alt="" />
+              </div>
+
+              <div className="flex-between">
+                <div className="flex gap-3 items-center">
+                  <img src={research} alt="" />
+                  <p>Research Papers</p>
+                </div>
+                <img src={right} alt="" />
+              </div>
             </div>
           </div>
 
           {/* profile */}
           <div className="flex-between py-8 px-7">
             <div>
-              <img src="" alt="" />
+              <img src={User} alt="" />
               <span>Bunmi Akinremi</span>
             </div>
 
             <div>
-              <img src="" alt="" />
+              <img src={more} alt="" />
             </div>
           </div>
         </div>

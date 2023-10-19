@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import ChatOnboarding from "../Components/chatOnboarding";
 
+
+
 function NewChat() {
   const [input, setInput] = useState(""); // User input
   const [messages, setMessages] = useState([]); // Chat history
