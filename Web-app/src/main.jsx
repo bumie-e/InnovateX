@@ -6,6 +6,7 @@ import Login from "./pages/login.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Chat from "./pages/chat.jsx";
+import Quiz from "./pages/quiz.jsx";
 import Dashboard from "./pages/dashboard.jsx";
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/chat",
     element: <Chat />,
+  },
+  {
+    path: "/quiz",
+    element: <Quiz />,
   },
   {
     path: "/dashboard",

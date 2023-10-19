@@ -13,6 +13,7 @@ import resource from "/assets/resource.png";
 import hero from "/assets/hero.png";
 
 import "./App.css";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -62,93 +63,110 @@ function App() {
           <div className=" text-[#454545]  card mt-16 bg-feature-bg">
             {/* row one */}
             {/* Dashboard */}
-            <div
-              className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD]
+            <Link to="/dashboard">
+              <div
+                className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD]
              border-[1px] rounded-xl"
-            >
-              <img src={dashboard} alt="" />
-              <div>
-                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Dashboard</h3>
-                <p>
-                  Get an at-a-glance overview of your learning journey and
-                  achievements and track your progress, view personalized
-                  recommendations, and manage your quizzes.
-                </p>
+              >
+                <img src={dashboard} alt="" />
+                <div>
+                  <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Dashboard</h3>
+                  <p>
+                    Get an at-a-glance overview of your learning journey and
+                    achievements and track your progress, view personalized
+                    recommendations, and manage your quizzes.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Chat */}
-            <div
-              className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD]
+            <Link to="/chat">
+              <div
+                className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD]
              border-[1px] rounded-xl"
-            >
-              <img src={chat} alt="" />
-              <div>
-                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Chat</h3>
-                <p>
-                  Have burning questions? Our AI-powered chat feature is here to
-                  help! Engage in real-time conversations with our virtual tutor
-                  to grasp concepts better.
-                </p>
+              >
+                <img src={chat} alt="" />
+                <div>
+                  <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Chat</h3>
+                  <p>
+                    Have burning questions? Our AI-powered chat feature is here
+                    to help! Engage in real-time conversations with our virtual
+                    tutor to grasp concepts better.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* row two */}
             {/* Quiz */}
-            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src={quiz} alt="" />
+            <Link to="/quiz">
+              <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+                <img src={quiz} alt="" />
 
-              <div>
-                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Quiz</h3>
-                <p>
-                  Take your learning to the next level with interactive quizzes.
-                  Choose between individual quizzes for focused review or team
-                  quizzes for collaborative learning.
-                </p>
+                <div>
+                  <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Quiz</h3>
+                  <p>
+                    Take your learning to the next level with interactive
+                    quizzes. Choose between individual quizzes for focused
+                    review or team quizzes for collaborative learning.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
 
-            {/* Language Options */}
-            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src={language} alt="" />
-              <div>
-                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Language Options</h3>
-                <p>
-                  Choose your preferred learning language from a selection of
-                  English, French, German, or Japanese. Customize your
-                  experience to best suit your linguistic preferences.
-                </p>
+            <Link to="#">
+              {/* Language Options */}
+              <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+                <img src={language} alt="" />
+                <div>
+                  <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">
+                    Language Options
+                  </h3>
+                  <p>
+                    Choose your preferred learning language from a selection of
+                    English, French, German, or Japanese. Customize your
+                    experience to best suit your linguistic preferences.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* row three */}
-            {/* Resource Suggestions */}
-            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src={resource} alt="" />
-              <div>
-                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">
-                  Resource Suggestions
-                </h3>
-                <p>
-                  Explore a curated list of research papers and podcasts that
-                  delve deeper into your chosen topics. Expand your
-                  understanding with additional resources recommended by our AI.
-                </p>
+            <Link to="#">
+              {/* Resource Suggestions */}
+              <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+                <img src={resource} alt="" />
+                <div>
+                  <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">
+                    Resource Suggestions
+                  </h3>
+                  <p>
+                    Explore a curated list of research papers and podcasts that
+                    delve deeper into your chosen topics. Expand your
+                    understanding with additional resources recommended by our
+                    AI.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
 
-            {/* Progress Tracker */}
-            <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
-              <img src={progress} alt="" />
-              <div>
-                <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">Progress Tracker</h3>
-                <p>
-                  Visualize your learning journey with our intuitive progress
-                  tracker. See how far you&apos;ve come and get insights into
-                  the concepts you&apos;ve mastered.
-                </p>
+            <Link to="#">
+              {/* Progress Tracker */}
+              <div className="lg:flex lg:gap-10 lg:items-start  px-6 py-7 border-[#D3D8DD] border-[1px] rounded-xl">
+                <img src={progress} alt="" />
+                <div>
+                  <h3 className=" mt-7 mb-3 lg:mt-0 lg:mb-4">
+                    Progress Tracker
+                  </h3>
+                  <p>
+                    Visualize your learning journey with our intuitive progress
+                    tracker. See how far you&apos;ve come and get insights into
+                    the concepts you&apos;ve mastered.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
 

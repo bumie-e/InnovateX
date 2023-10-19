@@ -54,7 +54,7 @@
   .card {
     @apply flex flex-wrap gap-[28px] justify-center;
   }
-  .card > div {
+  .card > a {
     @apply w-[468px];
   }
 }
