@@ -45,6 +45,7 @@ def query_API(query_request):
     # parse the response using feedparser
     feed = feedparser.parse(response)
 
+    results = []
     # Run through each entry, and print out information
     for entry in feed.entries:
         datePublished = entry.published
@@ -65,5 +66,7 @@ def query_API(query_request):
         
         # The abstract is in the <summary> element
         abstract = entry.summary
+        results.append({'datePublished':datePublished, 'pTitle':pTitle, 'authors':authors, 'absPageLink':absPageLink, 'pdfLink':pdfLink, 'abstract':abstract})
+    
 
-    return datePublished, pTitle, authors, absPageLink, pdfLink, abstract
+    return results
