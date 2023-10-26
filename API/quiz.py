@@ -9,7 +9,7 @@ openai.api_type = "azure"
 openai.api_base = config("AZURE_OPENAI_ENDPOINT") 
 openai.api_version = "2023-05-15"
 openai.api_key = config("AZURE_OPENAI_KEY")
-model_name = 'chatlang'
+model_name = config("model_name")
 
 # I have some chat history saved in a list, where each item is a dictionary representing a message with a role and content.
 chat_history = [

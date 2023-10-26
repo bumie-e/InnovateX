@@ -2,3 +2,7 @@ fastapi
 uvicorn[standard]
 feedparser
 podcast-api
+gunicorn
+openai
+langchain
+python-decouple
