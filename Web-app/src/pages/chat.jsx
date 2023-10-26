@@ -1,16 +1,16 @@
 import { useState } from "react";
+import ChatContainer from "../Components/chat/chatContainer";
+import ChatSideBar from "../Components/chat/chatSidebar";
+
 import menu from "/assets/menu.png";
-import DashboardSIdebar from "../Components/dashboardSIdebar";
-import Intro from "../Components/quiz/quizIntro";
 
-function Quiz() {
+function Chat() {
   const [isOpen, setIsOpen] = useState(false);
-
 
   // if form is successful, return chat, else return onboarding
   return (
     <>
-      <DashboardSIdebar />
+      <ChatSideBar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <main className="lg:ml-[309px]">
         {/* desktop */}
@@ -19,7 +19,7 @@ function Quiz() {
         lg:justify-between px-16 py-5 lg:items-center"
         >
           {" "}
-          <p className="font-semibold text-[32px]">Quiz</p>
+          <p className="font-semibold text-[32px]">Chat</p>
           <div>
             <img src="" alt="" />
             <p>Take a quiz</p>
@@ -32,14 +32,14 @@ function Quiz() {
         px-16 py-4 flex-between"
         >
           <img src={menu} onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
-          <p className="font-semibold text-[32px]">Quiz</p>
+          <p className="font-semibold text-[32px]">Chat</p>
           <div></div>
         </header>
 
-        <Intro />
+        <ChatContainer />
       </main>
     </>
   );
 }
 
-export default Quiz;
+export default Chat;

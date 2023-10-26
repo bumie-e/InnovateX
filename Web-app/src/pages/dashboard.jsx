@@ -1,5 +1,12 @@
+import DashboardSIdebar from "../Components/dashboardSIdebar";
+
 function Dashboard() {
-  return <div>Dashboard</div>;
+
+  return (
+    <>
+      <DashboardSIdebar />
+    </>
+  );
 }
 
 export default Dashboard;
