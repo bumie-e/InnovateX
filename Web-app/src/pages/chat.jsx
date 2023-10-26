@@ -1,11 +1,8 @@
 import { useState } from "react";
+import ChatContainer from "../Components/chat/chatContainer";
+import ChatSideBar from "../Components/chat/chatSidebar";
 
-import ChatSideBar from "../Components/chatSidebar";
-import ChatOnboarding from "../Components/chatOnboarding";
-import NewChat from "../Components/newChat";
 import menu from "/assets/menu.png";
-
-
 
 function Chat() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +36,7 @@ function Chat() {
           <div></div>
         </header>
 
-        {/* <ChatOnboarding /> */}
-        <NewChat />
+        <ChatContainer />
       </main>
     </>
   );
