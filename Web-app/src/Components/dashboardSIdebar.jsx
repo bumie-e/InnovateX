@@ -28,6 +28,10 @@ function DashboardSIdebar() {
               </div>
               <div>
                 <img src="" alt="" />
+                <Link to="/courses">Courses</Link>
+              </div>
+              <div>
+                <img src="" alt="" />
                 <Link to="/quiz">Quiz</Link>
               </div>
             </div>
