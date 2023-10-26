@@ -1,10 +1,11 @@
 import { useState } from "react";
 import menu from "/assets/menu.png";
 import DashboardSIdebar from "../Components/dashboardSIdebar";
-import Intro from "../Components/quiz/intro";
+import Intro from "../Components/quiz/quizIntro";
 
 function Quiz() {
   const [isOpen, setIsOpen] = useState(false);
+
 
   // if form is successful, return chat, else return onboarding
   return (

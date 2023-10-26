@@ -1,10 +1,15 @@
 import { useState } from "react";
+import QuizForm from "./quizForm";
 
 function MainQuiz() {
   const [input, setInput] = useState({
     topic: "",
   });
+  const [showQuiz, setShowQuiz] = useState(false);
 
+  const handleStartQuiz = () => {
+    setShowQuiz(true);
+  };
   function handleSelectChange(e) {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
@@ -20,33 +25,39 @@ function MainQuiz() {
   }
   return (
     <>
-      <div>
+      {showQuiz ? (
         <div>
-          <h2>Differential Calculus Quiz</h2>
+          <div className="mx-auto max-w-3xl px-5">
+            <div className="flex-between">
+              <h2>Differential Calculus Quiz</h2>
 
-          <p>10 Questions</p>
-          <form action="">
-            <div className="flex flex-col  w-full">
-              <label htmlFor="gender">Gender</label>
-              <select
-                name="gender"
-                id="gender"
-                value=""
-                placeholder="Select your Gender"
-                // onChange={handleChange}
-                className=" border-[#D0D5DD] border-[1px] py-[10px] px-14px rounded-lg outline-none"
-              >
-                <option value="" defaultValue>
-                  Select your Gender
-                </option>
-                <option value="male">male</option>
-                <option value="female">female</option>
-              </select>
+              <p>10 Questions</p>
             </div>
-            <button type="submit">Submit</button>
-          </form>
+            <form action="">
+              <div className="flex flex-col  w-full">
+                <label htmlFor="gender">Gender</label>
+                <select
+                  name="gender"
+                  id="gender"
+                  value=""
+                  placeholder="Select your Gender"
+                  // onChange={handleChange}
+                  className=" border-[#D0D5DD] border-[1px] py-[10px] px-14px rounded-lg outline-none"
+                >
+                  <option value="" defaultValue>
+                    Select your Gender
+                  </option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                </select>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        <QuizForm handleStartQuiz={handleStartQuiz} />
+      )}
     </>
   );
 }
