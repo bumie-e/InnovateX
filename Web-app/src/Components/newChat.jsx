@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import send from "/assets/send.png";
 import PropTypes from "prop-types";
 // import ChatOnboarding from "../Components/chatOnboarding";
 
@@ -90,20 +91,20 @@ function NewChat({
         <div className=" h-40" ref={chatLogRef}></div>
 
         {/* form */}
-        <div className="fixed bottom-9 z-10 left-0 right-0  ">
+        <div className="fixed bottom-9 z-10 left-0 right-0 lg:ml-[309px] ">
           <div className="grid place-items-center">
             <div className=" ">
               <form
                 action=""
-                onSubmit={handleChat}
                 style={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
+                className="relative w-fit"
               >
                 <input
-                  className="w-[400px]"
+                  className="w-[400px] "
                   type="text"
                   name="topic"
                   placeholder="Type your message..."
@@ -116,7 +117,13 @@ function NewChat({
                   }}
                   autoFocus
                 />
-                <button>Send</button>
+                <img
+                  src={send}
+                  onClick={handleChat}
+                  alt=""
+                  className="absolute right-3 "
+                />
+                {/* <button>Send</button> */}
               </form>
             </div>
           </div>

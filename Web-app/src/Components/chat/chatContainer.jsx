@@ -33,70 +33,42 @@ function ChatContainer() {
       prior_knowledge,
       interaction_needed,
     } = input;
-    // const formData = new FormData();
+    const formData = new FormData();
 
-    // formData.append("topic", topic);
-    // formData.append("explanation_level", explanation_level);
-    // formData.append("explanation_type", explanation_type);
-    // formData.append("prior_knowledge", prior_knowledge);
-    // formData.append("interaction_needed", interaction_needed);
+    formData.append("topic", topic);
+    formData.append("explanation_level", explanation_level);
+    formData.append("explanation_type", explanation_type);
+    formData.append("prior_knowledge", prior_knowledge);
+    formData.append("interaction_needed", interaction_needed);
 
     if (input.topic.trim() === "") return;
     // console.log(input);
     const userMessage = { text: input, isUser: true };
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append(
-      "Cookie",
-      "ARRAffinity=d3ae43c979c2cf911cdf1a2b87ef67e3ff3e7580ec1c1e247979dcdaa1f864d9; ARRAffinitySameSite=d3ae43c979c2cf911cdf1a2b87ef67e3ff3e7580ec1c1e247979dcdaa1f864d9"
-    );
+    try {
+      fetch("https://innovatex-backends.onrender.com/chat", {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // Add the user's message and the bot's response to the chat history
+          setMessages([
+            ...messages,
+            userMessage,
+            { text: data, isUser: false },
+          ]);
+          setInput(""); // Clear the input field
+        });
+    } catch (error) {
+      console.error(error);
+    }
 
-    var raw = JSON.stringify({
-      topic: "jet engines",
-      explanation_level: "Advanced insights",
-      prior_knowledge: "Little",
-      explanation_type: "In-depth explorations",
-      "interaction_needed ": "Yes",
-    });
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-      mode: "no-cors",
-    };
-
-    fetch("https://innovatex-backends.onrender.com/chat", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-
-    // try {
-    //   fetch("https://innovatex-backends.onrender.com/chat", {
-    //     method: "POST",
-    //     body: formData,
-    //     mode: "no-cors",
-    //     headers: { "Content-Type": "application/json" },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //       // Add the user's message and the bot's response to the chat history
-    //       setMessages([
-    //         ...messages,
-    //         userMessage,
-    //         { text: data, isUser: false },
-    //       ]);
-    //       setInput(""); // Clear the input field
-    //     });
-    // } catch (error) {
-    //   console.error(error);
-    // }
-
-    // const botResponse = "This is a simulated bot response."; // Simulated bot response; replace with your actual API call
-    // scrollToBottom();
+    const botResponse = "This is a simulated bot response."; // Simulated bot response; replace with your actual API call
+    scrollToBottom();
   }
 
   // if (!messages) return <ChatOnboarding handleFormChange={handleFormChange} />;
