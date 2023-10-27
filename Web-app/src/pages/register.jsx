@@ -52,7 +52,7 @@ function Register() {
         // Signed in
         const user = userCredential.user;
         // console.log(user);
-        toast("User created successfully"); // Display a success toast
+        toast("Registration successful"); // Display a success toast
         setTimeout(() => {
           navigate("/login"); // Redirect to the login page
         }, 3000);
