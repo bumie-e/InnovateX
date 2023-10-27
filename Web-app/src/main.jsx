@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Chat from "./pages/chat.jsx";
 import Quiz from "./pages/quiz.jsx";
 import Dashboard from "./pages/dashboard.jsx";
+import Courses from "./pages/courses.jsx";
 import AuthLayout from "./pages/authLayout.jsx";
 import authReducer from "./store.jsx";
 import { Provider } from "react-redux";
@@ -66,6 +67,14 @@ const router = createBrowserRouter([
     element: (
       <AuthLayout>
         <Dashboard />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/courses",
+    element: (
+      <AuthLayout>
+        <Courses />
       </AuthLayout>
     ),
   },
