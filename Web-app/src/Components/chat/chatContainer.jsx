@@ -68,7 +68,7 @@ function ChatContainer() {
       mode: "no-cors",
     };
 
-    fetch("https://innovatex.azurewebsites.net/chat", requestOptions)
+    fetch("https://innovatex-backends.onrender.com/chat", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));

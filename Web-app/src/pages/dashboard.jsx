@@ -7,7 +7,7 @@ function Dashboard() {
 
       <main className="lg:ml-[309px]">
         {/* desktop */}
-        <header
+        <nav
           className="hidden lg:flex border-[#E6E5EE] border-b-[1px]  
         lg:justify-end px-16 py-5 lg:items-center flex-row"
         >
@@ -30,17 +30,17 @@ function Dashboard() {
             />
             Bunmi Akinremi
           </div>
-        </header>
+        </nav>
 
         {/* mobile */}
-        <header
+        <nav
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
         px-16 py-4 flex-between"
         >
           <img src="" onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
           <p className="font-semibold text-[32px]">Quiz</p>
           <div></div>
-        </header>
+        </nav>
 
         {/* <Intro /> */}
       </main>
