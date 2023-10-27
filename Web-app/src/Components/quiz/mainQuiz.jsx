@@ -23,6 +23,14 @@ function MainQuiz() {
       console.log(error);
     }
   }
+  function handleQuizSubmission(e) {
+    e.preventDefault();
+    try {
+      console.log("hgjhj");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       {showQuiz ? (

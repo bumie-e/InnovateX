@@ -4,16 +4,13 @@ import DashboardSIdebar from "../Components/dashboardSIdebar";
 function Dashboard() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/course_data?select=*",
-      {
-        method: "get",
-        headers: {
-          apikey: import.meta.env.VITE_COURSE_API_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_COURSE_BEARER_TOKEN}`,
-        },
-      }
-    )
+    fetch(import.meta.env.VITE_COURSES_URL, {
+      method: "get",
+      headers: {
+        apikey: import.meta.env.VITE_COURSE_API_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_COURSE_BEARER_TOKEN}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
