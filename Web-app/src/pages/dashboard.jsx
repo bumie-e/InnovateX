@@ -9,10 +9,8 @@ function Dashboard() {
       {
         method: "get",
         headers: {
-          apikey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgwODE2OTUsImV4cCI6MjAxMzY1NzY5NX0.8RZpyVaq3vmnwWLBMgDo7mt7FW0KWgn4_SQ1FjsK60c",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgwODE2OTUsImV4cCI6MjAxMzY1NzY5NX0.8RZpyVaq3vmnwWLBMgDo7mt7FW0KWgn4_SQ1FjsK60c",
+          apikey: import.meta.env.VITE_COURSE_API_KEY,
+          Authorization: `Bearer ${import.meta.env.VITE_COURSE_BEARER_TOKEN}`,
         },
       }
     )
@@ -111,88 +109,6 @@ function Dashboard() {
                     </div>
                   );
                 })}
-
-              {/* <div className="border rounded col-span-12 sm:col-span-1 xs:mr-[140px]">
-                <img
-                  // className="max-h-11"
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1698385619/scott-graham-5fNmWej4tAA-unsplash_yotsdx.jpg"
-                  alt="course"
-                />
-                <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
-                  COURSE
-                </div>
-                <h3 className="p-6  mb-4 text-lg font-bold">
-                  Computer Science
-                </h3>
-                <div className="flex justify-between mr-4">
-                  <div>
-                    <p className="inline pl-6 text-xs">20% completed</p>
-                    <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
-                      <div
-                        className="h-2 rounded-full bg-blue-500"
-                        style={{ width: "20%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
-                    Continue →
-                  </button>
-                </div>
-              </div>
-
-              <div className=" border rounded col-span-12 sm:col-span-1">
-                <img
-                  // className="max-h-11"
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1698385619/desola-lanre-ologun-IgUR1iX0mqM-unsplash_trfdnx.jpg"
-                  alt="course"
-                />
-                <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
-                  COURSE
-                </div>
-                <h3 className="p-6 mb-4 text-lg font-bold">Computer Science</h3>
-                <div className="flex justify-between mr-4">
-                  <div>
-                    <p className="inline pl-6 text-xs">20% completed</p>
-                    <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
-                      <div
-                        className="h-2 rounded-full bg-blue-500"
-                        style={{ width: "20%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
-                    Continue →
-                  </button>
-                </div>
-              </div>
-
-              <div className=" border rounded col-span-12 sm:col-span-1">
-                <img
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1698385617/clement-helardot-95YRwf6CNw8-unsplash_fbuvmx.jpg"
-                  alt="course"
-                />
-                <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
-                  COURSE
-                </div>
-                <h3 className="p-6 mb-4 text-lg font-bold">Computer Science</h3>
-                <div className="flex justify-between mr-4">
-                  <div>
-                    <p className="inline pl-6 text-xs">20% completed</p>
-                    <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
-                      <div
-                        className="h-2 rounded-full bg-blue-500"
-                        style={{ width: "20%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
-                    Continue →
-                  </button>
-                </div>
-              </div> */}
             </div>
 
             {/* Quizzes */}
