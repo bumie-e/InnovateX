@@ -60,7 +60,8 @@ function Register() {
         // ...
       })
       .catch((error) => {
-        console.error(error);
+        toast(error.message);
+        console.log(error.code);
         // const errorCode = error.code;
         // const errorMessage = error.message;
       });
@@ -151,7 +152,7 @@ function Register() {
               <div className=" text-right">Forgot password</div>
 
               <button className=" bg-pry-col mt-4 text-white w-full py-4 rounded-lg">
-                Log In
+                Sign Up
               </button>
               <ToastContainer />
 

@@ -68,7 +68,8 @@ function Login() {
         // ...
       })
       .catch((error) => {
-        console.log(error);
+        toast(error.code);
+        console.log(error.code);
       });
   }
 
