@@ -6,3 +6,11 @@ gunicorn
 openai
 langchain
 python-decouple
+pypdfium2
+tiktoken
+cohere
+supabase
+python-pptx
+fpdf
+pandas
+python-multipart
