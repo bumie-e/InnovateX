@@ -6,11 +6,20 @@ from quiz import get_quiz_from_topic
 from rpaper import query_API
 from podcast import query_podcast_api
 from translate import translate_lang
+from courses import getcourse, getcourseinfo, get_course_quiz, get_question_response
+from upload import upload_file
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi import FastAPI, UploadFile, HTTPException, File
+from fastapi.responses import JSONResponse
+import shutil
+from pathlib import Path
+import io
 
 class Item(BaseModel):
     language: Optional[str] = 'English'
+    course_code: str
+    page_number: int
     topic: str
     explanation_level: Optional[str] = None
     prior_knowledge: Optional[str] = None
@@ -28,6 +37,22 @@ app = FastAPI()
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+# Define root
+@app.post("/course")
+async def course(item: Item):
+    response = getcourse(item.course_code, item.page_number)
+    return {"message": f"{response}"}
+
+@app.post("/courseinfo")
+async def courseinfo(item: Item):
+    response = getcourseinfo(item.course_code)
+    return {"message": f"{response}"}
+
+@app.post("/upload_materials")
+async def upload_materials(item: Item):
+    response = getcourseinfo(item.course_code)
+    return {"message": f"{response}"}
 
 # Define chat
 @app.post("/chat")
@@ -56,14 +81,18 @@ async def chat(item: Item):
 # Define root
 @app.post("/quiz")
 async def quiz(item: Item):
-    response = get_quiz_from_topic(item.topic)
+
+    response = get_course_quiz(item.course_code)
+    #response = get_quiz_from_topic(item.topic)
     return {"message": f"{response}"}
 
 # Define root
 @app.post("/question")
 async def questions(item: Item):
-    prompt = f'Please provide a response to the question on this {item.topic}. {item.question}'
-    response = get_chat_response(prompt)
+    # prompt = f'Please provide a response to the question on this {item.question}'
+    # response = get_chat_response(prompt)
+    prompt = f'What is the answer to this question: {item.question}?'
+    response = get_question_response(prompt, item.course_code)
     return {"message": f"{response}"}
 
 # Define podcast
@@ -89,3 +118,16 @@ async def translate(item: Item):
 async def video(item: Item):
 
     return {"message": "Hello World"}
+
+@app.post("/upload_materials")
+async def upload_material(file: UploadFile = File(...)):
+    try:
+        contents = file.file.read()
+        with open(file.filename, 'wb') as f:
+            f.write(contents)
+    except Exception:
+        return {"message": "There was an error uploading the file"}
+    finally:
+        file.file.close()
+        
+    return {"message": f"Successfully uploaded {file.filename}"}
