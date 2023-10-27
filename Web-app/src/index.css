@@ -8,7 +8,15 @@
   padding: 0;
   font-family: "Cabin", sans-serif;
 }
-
+.start-learning {
+  background: linear-gradient(
+    94deg,
+    rgba(139, 138, 187, 0.75) -4.72%,
+    rgba(172, 171, 222, 0.56) 56.34%,
+    rgba(123, 106, 169, 0.66) 117.42%,
+    rgba(107, 106, 169, 0.66) 117.42%
+  );
+}
 @layer base {
   h1 {
     @apply font-bold text-[40px] lg:text-[64px] text-[#333333];
@@ -38,9 +46,15 @@
     @apply flex justify-between items-center;
   }
   .small-heading {
-    @apply text-[#FA835C] border-[#FA835C];
+    @apply text-[#FA835C] border-[#FA835C] border-[1px] inline-block px-8 py-[10px] rounded-lg;
   }
-  .card {
+  /* .card {
     @apply grid place-items-center grid-cols-1 lg:grid-cols-2  gap-[28px];
+  } */
+  .card {
+    @apply flex flex-wrap gap-[28px] justify-center;
+  }
+  .card > a {
+    @apply w-[468px];
   }
 }
