@@ -1,6 +1,27 @@
+import { useEffect, useState } from "react";
 import DashboardSIdebar from "../Components/dashboardSIdebar";
 
 function Dashboard() {
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/course_data?select=*",
+      {
+        method: "get",
+        headers: {
+          apikey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgwODE2OTUsImV4cCI6MjAxMzY1NzY5NX0.8RZpyVaq3vmnwWLBMgDo7mt7FW0KWgn4_SQ1FjsK60c",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgwODE2OTUsImV4cCI6MjAxMzY1NzY5NX0.8RZpyVaq3vmnwWLBMgDo7mt7FW0KWgn4_SQ1FjsK60c",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setCourses(data);
+      });
+  }, []);
   return (
     <>
       <DashboardSIdebar />
@@ -51,8 +72,47 @@ function Dashboard() {
               <h2 className="text-xl">Welcome, Bunmi! 👋</h2>
               <h4 className="text-xl mt-10">Your Course</h4>
             </div>
+
+            {/* Courses */}
             <div className="grid grid-cols-3 gap-8 mb-8">
-              <div className="border rounded col-span-12 sm:col-span-1 xs:mr-[140px]">
+              {courses &&
+                courses.map((course) => {
+                  return (
+                    <div
+                      key={course.id}
+                      className="border rounded col-span-12 sm:col-span-1 xs:mr-[140px]"
+                    >
+                      <img
+                        // className="max-h-11"
+                        src="https://res.cloudinary.com/pro-solve/image/upload/v1698385619/scott-graham-5fNmWej4tAA-unsplash_yotsdx.jpg"
+                        alt="course"
+                      />
+                      <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
+                        {course.course_code}
+                      </div>
+                      <h3 className="p-6  mb-4 text-lg font-bold">
+                        {course.course_title}
+                      </h3>
+                      <div className="flex justify-between mr-4">
+                        <div>
+                          <p className="inline pl-6 text-xs">20% completed</p>
+                          <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
+                            <div
+                              className="h-2 rounded-full bg-blue-500"
+                              style={{ width: "20%" }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
+                          Continue →
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+
+              {/* <div className="border rounded col-span-12 sm:col-span-1 xs:mr-[140px]">
                 <img
                   // className="max-h-11"
                   src="https://res.cloudinary.com/pro-solve/image/upload/v1698385619/scott-graham-5fNmWej4tAA-unsplash_yotsdx.jpg"
@@ -132,8 +192,9 @@ function Dashboard() {
                     Continue →
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
+
             {/* Quizzes */}
             <div className="mb-3 font-medium">Quizzes</div>
             <div className="grid grid-cols-3 gap-8 mb-8">
