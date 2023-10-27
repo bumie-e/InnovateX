@@ -20,7 +20,7 @@ class Item(BaseModel):
     language: Optional[str] = 'English'
     course_code: str
     page_number: Optional[int] = 0
-    topic: Optional[str] = None
+    topic: Optional[str] = 'Bayesian Theorem'
     explanation_level: Optional[str] = 'Introductory explanations'
     prior_knowledge: Optional[str] = 'Prior'
     explanation_type: Optional[str] = 'In-depth explorations'
