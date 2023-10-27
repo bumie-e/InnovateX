@@ -118,7 +118,7 @@ Sample Output
 
 This returns the full and in-depth content of a course. Due to the time it takes for a content to be loaded, it will only return data based on the chapter(which is identifed as a page number).
 
-So for example, if CSC312 has 6 chapters(also known as modules), this endpoint will accept the course_code and page_number, in this instance the first chapter as 0. And it returns an output of the subtopics for that chapter and the content, which should be displayed on a single page.
+So for example, if CSC312 has 6 chapters(also known as modules), this endpoint will accept the `course_code` and `page_number`, in this instance the first chapter as 0. And it returns an output of the subtopics for that chapter and the content, which should be displayed on a single page.
 
     {
         'sub_topic':
@@ -203,21 +203,46 @@ Sample Output
                 'answer': \"\\nI don't know.\"}}}"
     }
 
-## `https://innovatexapiapp.azurewebsites.net/questions` questions.py
+## Questions
 
-You are calling the `questions` function in the API which accepts an instance of item. E.g
+This allows the user to ask the AI model questions and returns a response based on the course content. To be used as a Q&A section for the course.
 
-`@app.post("/questions")
-async def questions(item: Item):
-func(item.topic, item.question)
-return response`
+`https://innovatexapiapp.azurewebsites.net/questions` --> questions.py
 
-This endpoint accepts `topic` and `question` as it's parameters. `question` here refers to the question the user has.
+It accepts the following parameters, `course_code`, `question`. It returns a response in this format
 
-The prompt is constructed in the API and the input parameter is gotten from the evaluation page and should be sent for every request.
+    {
+      "message": "response"
+    }
 
-It's output is a json file, containing one attribute
-`{"message": f"{response}"}`. `response` is a single element which is a response to the question.
+Sample Input:
+
+    {
+      "language": "English",
+      "course_code": "CSC401",
+      "page_number": 0,
+      "topic": "string",
+      "explanation_level": "string",
+      "prior_knowledge": "string",
+      "explanation_type": "string",
+      "interaction_needed": "string",
+      "specific_example": "string",
+      "question": "string",
+      "text": "What is the summary of this book?"
+    }
+
+Sample Output:
+
+    {
+      "message": " I don't know what the question is asking for. Can you provide more context or clarify the question?"
+    }
+
+## Chat
+
+This section allows the user to chat with the AI model on any topic. It is genral to multiple fields and intends to provide an Insight to a new area.
+
+It accepts the following inputs:
+
 
 
 ## `https://innovatexapiapp.azurewebsites.net/podcast` podcast.py
