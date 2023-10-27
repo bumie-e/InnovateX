@@ -8,17 +8,18 @@ from langchain.text_splitter import CharacterTextSplitter
 from supabase.client import Client, create_client
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
+from decouple import config
+import openai
 
-licenseCode = '0048EBFA-5566-4970-AA2B-EDBA33C7559D'
-UserName =  'bumie'
-os.environ["SUPABASE_URL"] = "https://hryzlnqorkzfkdrkpgbl.supabase.co"
-os.environ["SUPABASE_SERVICE_KEY"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgwODE2OTUsImV4cCI6MjAxMzY1NzY5NX0.8RZpyVaq3vmnwWLBMgDo7mt7FW0KWgn4_SQ1FjsK60c"
-os.environ["SUPABASE_SECRET_KEY"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5ODA4MTY5NSwiZXhwIjoyMDEzNjU3Njk1fQ._9gWycCMTsBbSDB5_SFPqveOtji1bb5dTFfLMGNS778"
-os.environ["OPENAI_API_KEY"] = "10176c45db5a431e979747e64bdfaf76"
-os.environ["OPENAI_API_VERSION"]= "2023-05-15"
+licenseCode = config('OCR_LISENCE_CODE')
+UserName =  config('OCR_USERNAME')
+supabase_url = config('SUPABASE_URL')
+supabase_key = config('SUPABASE_SERVICE_KEY')
+OPENAI_API_VERSION = config('OPENAI_API_VERSION')
 
-supabase_url = os.environ.get("SUPABASE_URL")
-supabase_key = os.environ.get("SUPABASE_SERVICE_KEY")
+openai.api_version = config('OPENAI_API_VERSION')
+openai.api_key = config('OPENAI_API_KEY')
+
 supabase: Client = create_client(supabase_url, supabase_key)
 
 # Initialize OpenAI embeddings

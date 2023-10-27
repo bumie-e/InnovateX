@@ -7,7 +7,7 @@ import openai
 
 openai.api_type = "azure"
 openai.api_base = config("AZURE_OPENAI_ENDPOINT") 
-openai.api_version = "2023-05-15"
+openai.api_version = config("OPENAI_API_VERSION") 
 openai.api_key = config("AZURE_OPENAI_KEY")
 model_name = config("model_name")
 

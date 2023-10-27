@@ -19,12 +19,12 @@ import io
 class Item(BaseModel):
     language: Optional[str] = 'English'
     course_code: str
-    page_number: int
-    topic: str
-    explanation_level: Optional[str] = None
-    prior_knowledge: Optional[str] = None
-    explanation_type: Optional[str] = None
-    interaction_needed: Optional[str] = None
+    page_number: Optional[int] = 0
+    topic: Optional[str] = None
+    explanation_level: Optional[str] = 'Introductory explanations'
+    prior_knowledge: Optional[str] = 'Prior'
+    explanation_type: Optional[str] = 'In-depth explorations'
+    interaction_needed: Optional[str] = 'Yes'
     specific_example: Optional[str] = None
     question: Optional[str] = None
     text: Optional[str] = None
@@ -122,11 +122,11 @@ async def video(item: Item):
 @app.post("/upload_materials")
 async def upload_material(file: UploadFile = File(...)):
     try:
-        contents = file.file.read()
+        contents = file.file.read()  # This reads the file as binary data
         with open(file.filename, 'wb') as f:
             f.write(contents)
-    except Exception:
-        return {"message": "There was an error uploading the file"}
+    except Exception as e:
+        return {"message": f"There was an error uploading the file: {str(e)}"}
     finally:
         file.file.close()
         

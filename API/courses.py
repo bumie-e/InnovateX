@@ -8,23 +8,23 @@ from ast import literal_eval
 from supabase.client import Client, create_client
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
+from decouple import config
 
 # Config
-os.environ["SUPABASE_URL"] = "https://hryzlnqorkzfkdrkpgbl.supabase.co"
-os.environ["SUPABASE_SERVICE_KEY"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgwODE2OTUsImV4cCI6MjAxMzY1NzY5NX0.8RZpyVaq3vmnwWLBMgDo7mt7FW0KWgn4_SQ1FjsK60c"
-os.environ["SUPABASE_SECRET_KEY"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyeXpsbnFvcmt6ZmtkcmtwZ2JsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5ODA4MTY5NSwiZXhwIjoyMDEzNjU3Njk1fQ._9gWycCMTsBbSDB5_SFPqveOtji1bb5dTFfLMGNS778"
-os.environ["OPENAI_API_KEY"] = "10176c45db5a431e979747e64bdfaf76"
-openai.api_base = "https://lang-chain.openai.azure.com/"
-openai.api_key = "10176c45db5a431e979747e64bdfaf76"
+openai.api_base = config('OPENAI_API_BASE')
 openai.api_type = "azure"
-openai.api_version = "2023-05-15"
 
+openai.api_version = config('OPENAI_API_VERSION')
+openai.api_key = config('OPENAI_API_KEY')
+
+supabase_url = config('SUPABASE_URL')
+supabase_key = config('SUPABASE_SERVICE_KEY')
+SUPABASE_SECRET_KEY = config('SUPABASE_SECRET_KEY')
 
 supabase_url = os.environ.get("SUPABASE_URL")
 supabase_key = os.environ.get("SUPABASE_SERVICE_KEY")
 supabase: Client = create_client(supabase_url, supabase_key)
 
-os.environ["OPENAI_API_VERSION"]= "2023-05-15"
 
 llm = AzureOpenAI(temperature=0.0,model_name="gpt-35-turbo-instruct",
     deployment_name="lang-chain",)
