@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const Courses = () => {
   const user = useSelector((state) => state.user);
-const courses = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -33,7 +32,6 @@ const courses = () => {
       };
     }
   }, [isModalOpen]);
-
 
   return (
     <>
@@ -368,7 +366,7 @@ const courses = () => {
                           </div>
 
                           <button className=" rounded-lg py-[18px] px-14 bg-pry-col text-white">
-                            Save and Proceed 
+                            Save and Proceed
                           </button>
                         </form>
                       </div>
