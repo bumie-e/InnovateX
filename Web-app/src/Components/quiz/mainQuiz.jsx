@@ -3,7 +3,13 @@ import QuizForm from "./quizForm";
 
 function MainQuiz() {
   const [input, setInput] = useState({
+    language: "English",
     topic: "",
+    course_code: "",
+    explanation_level: "Advanced insights",
+    prior_knowledge: "Little",
+    explanation_type: "In-depth explorations",
+    interaction_needed: "Yes",
   });
   const handleStartQuiz = () => {
     setShowQuiz(true);
@@ -93,11 +99,16 @@ function MainQuiz() {
   return (
     <>
       {showQuiz ? (
-        <div>
-          <h1>Quiz</h1>
+        <div className="mx-auto max-w-3xl px-4 py-10">
+          <div className="flex-between mb-8">
+            <h3>Differential Calculus Quiz</h3>
+            <span>5 questions</span>
+          </div>
           {currentQuestion <= questions.length ? (
             <div>
-              <h3>{questions[currentQuestion - 1]}</h3>
+              <h3 className="font-bold text-lg mb-4">
+                {questions[currentQuestion - 1]}
+              </h3>
               {quizData.questions[questions[currentQuestion - 1]].options.map(
                 (option, index) => (
                   <div key={index}>
@@ -120,23 +131,34 @@ function MainQuiz() {
                   </div>
                 )
               )}
-              <button onClick={handlePrevious} disabled={currentQuestion === 1}>
-                Previous
-              </button>
-              {currentQuestion === questions.length ? (
-                <div>
-                  <h3>Quiz Submission</h3>
-                  <p>Are you sure you want to submit the quiz?</p>
-                  <button onClick={handleQuizSubmit}>Submit</button>
-                </div>
-              ) : (
+              <div className="flex-between mt-4">
                 <button
-                  onClick={handleNext}
-                  disabled={currentQuestion === questions.length}
+                  className="border-[1px] border-pry-col rounded-lg px-9 py-[19px]"
+                  onClick={handlePrevious}
+                  disabled={currentQuestion === 1}
                 >
-                  Next
+                  Previous
                 </button>
-              )}
+                {currentQuestion === questions.length ? (
+                  <div>
+                    <button
+                      className="bg-pry-col py-2 px-8 lg:py-[18px] lg:px-20 
+                  rounded-lg text-white "
+                      onClick={handleQuizSubmit}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    className="border-[1px] border-pry-col rounded-lg px-9 py-[19px]"
+                    onClick={handleNext}
+                    disabled={currentQuestion === questions.length}
+                  >
+                    Next
+                  </button>
+                )}
+              </div>
             </div>
           ) : (
             ""
