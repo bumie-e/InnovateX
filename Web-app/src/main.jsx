@@ -17,6 +17,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import thunk from "redux-thunk";
+import CoursePage from "./pages/coursePage.jsx";
+import AiChat from "./pages/aichat.jsx";
 
 const persistConfig = {
   key: "root",
@@ -75,6 +77,22 @@ const router = createBrowserRouter([
     element: (
       <AuthLayout>
         <Courses />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/course",
+    element: (
+      <AuthLayout>
+        <CoursePage />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/aiChat",
+    element: (
+      <AuthLayout>
+        <AiChat />
       </AuthLayout>
     ),
   },

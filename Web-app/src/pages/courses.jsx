@@ -2,6 +2,7 @@ import React from "react";
 
 import DashboardSIdebar from "../Components/dashboardSIdebar";
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const courses = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,6 +13,12 @@ const courses = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/course");
   };
 
   useEffect(() => {
@@ -359,8 +366,11 @@ const courses = () => {
                             </div>
                           </div>
 
-                          <button className=" rounded-lg py-[18px] px-14 bg-pry-col text-white">
-                            Save and Proceed 
+                          <button
+                            onClick={handleButtonClick}
+                            className=" rounded-lg py-[18px] px-14 bg-pry-col text-white"
+                          >
+                            Save and Proceed
                           </button>
                         </form>
                       </div>
