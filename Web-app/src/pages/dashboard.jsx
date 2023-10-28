@@ -4,22 +4,24 @@ import DashboardSIdebar from "../Components/dashboardSIdebar";
 function Dashboard() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/course_data?select=*",
-      {
-        method: "get",
-        headers: {
-          apikey: import.meta.env.VITE_COURSE_API_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_COURSE_BEARER_TOKEN}`,
-        },
-      }
-    )
+    getCourses();
+  }, []);
+
+  function getCourses() {
+    fetch(import.meta.env.VITE_COURSES_URL, {
+      method: "get",
+      headers: {
+        apikey: import.meta.env.VITE_COURSE_API_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_COURSE_BEARER_TOKEN}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setCourses(data);
       });
-  }, []);
+  }
+
   return (
     <>
       <DashboardSIdebar />
@@ -56,7 +58,11 @@ function Dashboard() {
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
         px-16 py-4 flex-between"
         >
-          <img src="" onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
+          <img
+            src=""
+            //  onClick={() => setIsOpen(!isOpen)}
+            alt="menu icon"
+          />
           <p className="font-semibold text-[32px]">Quiz</p>
           <div></div>
         </nav>
