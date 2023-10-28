@@ -8,16 +8,17 @@ from decouple import config
 
 openai.api_type = "azure"
 
-openai.api_base = config("AZURE_OPENAI_ENDPOINT") 
+
+openai.api_base = f"{config('CHAT_OPEN_AI_AZURE_URL')}"
 openai.api_version = "2023-05-15"
-openai.api_key = config("AZURE_OPENAI_KEY")
+openai.api_key = f"{config('CHAT_OPEN_AI_AZURE_KEY')}"
 
 lang_key = config('LANG_API_KEY')
 lang_endpoint = config('LANG_ENDPOINT')
 lang_location = config('LANG_LOCATION')
 
 # Map model names to OpenAI model IDs
-deployment_name = config("model_name")
+deployment_name = f"{config('CHAT_OPEN_AI_MODEL_NAME')}"
 model_name = ''
 
 # Set up the header information, which includes our subscription key
@@ -37,33 +38,11 @@ messages = [{"role": "system", "content": f"{prompt_prefix}"}]
 
 def get_chat_response(prompt, target_language = 'English'):
 
-    # Setting target language
-    if target_language == 'English':
-        target_language = 'en'
-    elif target_language == 'Yoruba':
-        target_language = 'yo'
-    elif target_language == 'Zulu':
-        target_language = 'zu'
-    elif target_language == 'Hausa':
-        target_language = 'ha'
-    elif target_language == 'Russian :ru:':
-        target_language = 'ru'
-    elif target_language == 'Igbo':
-        target_language = 'ig'
-    elif target_language == 'Swahili':
-        target_language = 'sw'
-
-    # # Indicate that we want to translate and the API version (3.0) and the target language
-    # path = '/translate?api-version=3.0'
-    # # Add the target language parameter
-    # target_language_parameter = '&to=' + target_language
-    # Create the full URL
-    # constructed_url = lang_endpoint + path + target_language_parameter
-
     response = generate_response(prompt)
 
-    if target_language !='en':
+    if target_language !='English':
         response = translate_lang(target_language, response)
+    print(response)
 
     return response
 
