@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import QuizForm from "./quizForm";
+import { Navigate } from "react-router-dom";
 
 function MainQuiz() {
   const [input, setInput] = useState({
@@ -161,12 +163,66 @@ function MainQuiz() {
             ""
           )}
           {showModal && (
-            <div className="modal">
-              <div className="modal-content">
-                <p>
-                  You got {correctAnswers} out of {questions.length} correct
-                  answers!
-                </p>
+            // <div className="modal">
+            //   <div className="modal-content">
+            //     <p>
+            //       You got {correctAnswers} out of {questions.length} correct
+            //       answers!
+            //     </p>
+            //   </div>
+            // </div>
+
+            <div className="fixed inset-0 flex items-center justify-center">
+              <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                <div className="flex items-center justify-center">
+                  <svg
+                    className="text-green-500 w-12 h-12"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <div className="mt-4 text-center">
+                  <h3 className="text-lg font-medium">Quiz Result</h3>
+                  <p className="mt-2 text-gray-600">
+                    You got {correctAnswers} out of {questions.length} correct
+                    answers!
+                  </p>
+
+                  <div className="mt-4 flex-center gap-4">
+                    <button
+                      className="bg-pry-col text-white py-2 px-4 rounded
+                     hover:bg-green-600"
+                      onClick={() => window.location.reload()}
+                    >
+                      <Link to="/quiz"> Start a New Quiz</Link>
+                    </button>
+                    <button
+                      className="bg-pry-col text-white py-2 px-4 rounded
+                     hover:bg-green-600"
+                    >
+                      <Link to="/chat">Back to Chat</Link>
+                    </button>
+                  </div>
+
+                  {/* <div className="mt-4">
+                    <button
+                      className="bg-pry-col text-white py-2 px-4 rounded hover:bg-green-600"
+                      onClick={() => {
+                        setShowModal(!showModal);
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div> */}
+                </div>
               </div>
             </div>
           )}
