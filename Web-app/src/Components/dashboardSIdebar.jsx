@@ -1,6 +1,6 @@
-import { useState } from "react";
 import logo from "/assets/chat_logo.png";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import chat from "/assets/dashboard/chat.png";
 import dashboard from "/assets/dashboard/dashboard.png";
@@ -109,5 +109,10 @@ function DashboardSIdebar({ isOpen, setIsOpen }) {
     </>
   );
 }
+
+DashboardSIdebar.propTypes = {
+  isOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
+};
 
 export default DashboardSIdebar;
