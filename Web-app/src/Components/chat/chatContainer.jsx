@@ -31,8 +31,6 @@ function ChatContainer() {
     e.preventDefault();
 
     if (input.question.trim() === "") return;
-    // console.log(input);
-    // const userMessage = { text: input.question, isUser: true };
 
     try {
       fetch("https://innovatex.azurewebsites.net/chat", {
@@ -46,7 +44,7 @@ function ChatContainer() {
         .then((data) => {
           const responseObject = JSON.parse(data);
 
-          console.log(responseObject.message);
+          // console.log(responseObject.message);
           // Add the user's message and the bot's response to the chat history
           setMessages([
             ...messages,
@@ -67,12 +65,8 @@ function ChatContainer() {
     } catch (error) {
       console.error(error);
     }
-
-    // const botResponse = "This is a simulated bot response."; // Simulated bot response; replace with your actual API call
-    // scrollToBottom();
   }
 
-  // if (!messages) return <ChatOnboarding handleFormChange={handleFormChange} />;
   function getNextStep() {
     if (step === 1) {
       setStep(2); // Proceed to the next step only if step 1 is valid
