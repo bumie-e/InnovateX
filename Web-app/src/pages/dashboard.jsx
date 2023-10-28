@@ -1,13 +1,32 @@
+import { useEffect, useState } from "react";
 import DashboardSIdebar from "../Components/dashboardSIdebar";
 
 function Dashboard() {
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/course_data?select=*",
+      {
+        method: "get",
+        headers: {
+          apikey: import.meta.env.VITE_COURSE_API_KEY,
+          Authorization: `Bearer ${import.meta.env.VITE_COURSE_BEARER_TOKEN}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setCourses(data);
+      });
+  }, []);
   return (
     <>
       <DashboardSIdebar />
 
       <main className="lg:ml-[309px]">
         {/* desktop */}
-        <header
+        <nav
           className="hidden lg:flex border-[#E6E5EE] border-b-[1px]  
         lg:justify-end px-16 py-5 lg:items-center flex-row"
         >
@@ -30,17 +49,17 @@ function Dashboard() {
             />
             Bunmi Akinremi
           </div>
-        </header>
+        </nav>
 
         {/* mobile */}
-        <header
+        <nav
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
         px-16 py-4 flex-between"
         >
           <img src="" onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
           <p className="font-semibold text-[32px]">Quiz</p>
           <div></div>
-        </header>
+        </nav>
 
         {/* <Intro /> */}
       </main>
@@ -51,89 +70,47 @@ function Dashboard() {
               <h2 className="text-xl">Welcome, Bunmi! 👋</h2>
               <h4 className="text-xl mt-10">Your Course</h4>
             </div>
+
+            {/* Courses */}
             <div className="grid grid-cols-3 gap-8 mb-8">
-              <div className="border rounded col-span-12 sm:col-span-1 xs:mr-[140px]">
-                <img
-                  // className="max-h-11"
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1698385619/scott-graham-5fNmWej4tAA-unsplash_yotsdx.jpg"
-                  alt="course"
-                />
-                <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
-                  COURSE
-                </div>
-                <h3 className="p-6  mb-4 text-lg font-bold">
-                  Computer Science
-                </h3>
-                <div className="flex justify-between mr-4">
-                  <div>
-                    <p className="inline pl-6 text-xs">20% completed</p>
-                    <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
-                      <div
-                        className="h-2 rounded-full bg-blue-500"
-                        style={{ width: "20%" }}
-                      ></div>
+              {courses &&
+                courses.map((course) => {
+                  return (
+                    <div
+                      key={course.id}
+                      className="border rounded col-span-12 sm:col-span-1 xs:mr-[140px]"
+                    >
+                      <img
+                        // className="max-h-11"
+                        src="https://res.cloudinary.com/pro-solve/image/upload/v1698385619/scott-graham-5fNmWej4tAA-unsplash_yotsdx.jpg"
+                        alt="course"
+                      />
+                      <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
+                        {course.course_code}
+                      </div>
+                      <h3 className="p-6  mb-4 text-lg font-bold">
+                        {course.course_title}
+                      </h3>
+                      <div className="flex justify-between mr-4">
+                        <div>
+                          <p className="inline pl-6 text-xs">20% completed</p>
+                          <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
+                            <div
+                              className="h-2 rounded-full bg-blue-500"
+                              style={{ width: "20%" }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
+                          Continue →
+                        </button>
+                      </div>
                     </div>
-                  </div>
-
-                  <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
-                    Continue →
-                  </button>
-                </div>
-              </div>
-
-              <div className=" border rounded col-span-12 sm:col-span-1">
-                <img
-                  // className="max-h-11"
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1698385619/desola-lanre-ologun-IgUR1iX0mqM-unsplash_trfdnx.jpg"
-                  alt="course"
-                />
-                <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
-                  COURSE
-                </div>
-                <h3 className="p-6 mb-4 text-lg font-bold">Computer Science</h3>
-                <div className="flex justify-between mr-4">
-                  <div>
-                    <p className="inline pl-6 text-xs">20% completed</p>
-                    <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
-                      <div
-                        className="h-2 rounded-full bg-blue-500"
-                        style={{ width: "20%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
-                    Continue →
-                  </button>
-                </div>
-              </div>
-
-              <div className=" border rounded col-span-12 sm:col-span-1">
-                <img
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1698385617/clement-helardot-95YRwf6CNw8-unsplash_fbuvmx.jpg"
-                  alt="course"
-                />
-                <div className="pl-6 pt-4 text-[12px] text-[#454545] font-normal">
-                  COURSE
-                </div>
-                <h3 className="p-6 mb-4 text-lg font-bold">Computer Science</h3>
-                <div className="flex justify-between mr-4">
-                  <div>
-                    <p className="inline pl-6 text-xs">20% completed</p>
-                    <div className="w-20 ml-6 h-2 rounded-full bg-gray-200">
-                      <div
-                        className="h-2 rounded-full bg-blue-500"
-                        style={{ width: "20%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <button className="mb-4 ml-6 px-4 py-2 text-blue-500 border-solid border-2 border-blue-500 rounded-md">
-                    Continue →
-                  </button>
-                </div>
-              </div>
+                  );
+                })}
             </div>
+
             {/* Quizzes */}
             <div className="mb-3 font-medium">Quizzes</div>
             <div className="grid grid-cols-3 gap-8 mb-8">

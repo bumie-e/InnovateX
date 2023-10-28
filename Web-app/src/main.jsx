@@ -8,6 +8,29 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Chat from "./pages/chat.jsx";
 import Quiz from "./pages/quiz.jsx";
 import Dashboard from "./pages/dashboard.jsx";
+import Courses from "./pages/courses.jsx";
+import AuthLayout from "./pages/authLayout.jsx";
+import authReducer from "./store.jsx";
+import { Provider } from "react-redux";
+import { persistReducer, persistStore } from "redux-persist";
+import { configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { PersistGate } from "redux-persist/integration/react";
+import thunk from "redux-thunk";
+
+const persistConfig = {
+  key: "root",
+  storage,
+  version: "1",
+};
+
+const persistedReducer = persistReducer(persistConfig, authReducer);
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: [thunk],
+});
+
+let persistor = persistStore(store);
 
 const router = createBrowserRouter([
   {
@@ -25,20 +48,44 @@ const router = createBrowserRouter([
   },
   {
     path: "/chat",
-    element: <Chat />,
+    element: (
+      <AuthLayout>
+        <Chat />
+      </AuthLayout>
+    ),
   },
   {
     path: "/quiz",
-    element: <Quiz />,
+    element: (
+      <AuthLayout>
+        <Quiz />
+      </AuthLayout>
+    ),
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <AuthLayout>
+        <Dashboard />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/courses",
+    element: (
+      <AuthLayout>
+        <Courses />
+      </AuthLayout>
+    ),
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

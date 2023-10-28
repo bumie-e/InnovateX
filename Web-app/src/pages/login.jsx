@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
+import { setLogin } from "../store";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithRedirect,
   GoogleAuthProvider,
+  getRedirectResult,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 // import firebase from "firebase/app";
@@ -23,6 +26,7 @@ function Login() {
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -50,32 +54,51 @@ function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // console.log(user);
-        toast("User created successfully"); // Display a success toast
+        const accessToken = user.accessToken;
+        dispatch(
+          setLogin({
+            user: user,
+            token: accessToken,
+          })
+        );
+        toast("Login Successful"); // Display a success toast
         setTimeout(() => {
           navigate("/dashboard");
         }, 3000);
         // ...
       })
       .catch((error) => {
-        console.log(error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        toast(error.code);
+        console.log(error.code);
       });
   }
 
   // login with google
   const loginWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider);
+
+    getRedirectResult(auth)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
+        // This gives you the result of the redirect operation.
+        // if (result.credential) {
+        // This gives you the Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
+        // }
+
         // The signed-in user info.
         const user = result.user;
-        // console.log(user);
-        // IdP data available using getAdditionalUserInfo(result)
+
+        // You can access the user's basic information like name, email, etc.
+        const displayName = user.displayName;
+        const email = user.email;
+        const photoURL = user.photoURL;
+        const uid = user.uid;
+
+        // You can do something with the user's information here.
+        console.log("User Info:", user);
+
         // ...
       })
       .catch((error) => {
@@ -83,10 +106,6 @@ function Login() {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
       });
   };

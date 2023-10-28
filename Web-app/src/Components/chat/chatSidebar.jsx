@@ -67,14 +67,12 @@ function Sidebar({ isOpen, setIsOpen }) {
 
           {/* profile */}
           <div className="flex-between py-8 px-7">
-            <div>
+            <div className="flex items-end">
               <img src={User} alt="" />
               <span>Bunmi Akinremi</span>
             </div>
 
-            <div>
-              <img src={more} alt="" />
-            </div>
+            <img src={more} alt="" />
           </div>
         </div>
       </div>
