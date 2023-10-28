@@ -55,7 +55,7 @@ function MainQuiz() {
       },
     },
   };
-
+  const [correctAnswers, setCorrectAnswers] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -74,26 +74,23 @@ function MainQuiz() {
     setCurrentQuestion(Math.min(currentQuestion + 1, questions.length));
   };
 
-  let correctAnswers = 0;
   const handleQuizSubmit = () => {
-    const calculateCorrectAnswers = () => {
-      for (const question of questions) {
-        console.log(
-          selectedOptions[question] === quizData.questions[question].answer
-        );
-        // console.log(correctAnswers);
-        if (selectedOptions[question] === quizData.questions[question].answer) {
-          correctAnswers++;
-        }
-      }
-      console.log(correctAnswers);
-      return correctAnswers;
-    };
-    correctAnswers = calculateCorrectAnswers();
-    console.log(correctAnswers);
+    let correctCount = 0; // Initialize a variable to count correct answers
+    for (const question of questions) {
+      console.log(
+        selectedOptions[question] === quizData.questions[question].answer
+      );
 
-    // Display the result in a modal
+      if (selectedOptions[question] === quizData.questions[question].answer) {
+        correctCount++; // Increment the count for each correct answer
+      }
+    }
+
+    setCorrectAnswers(correctCount); // Update the correctAnswers state
+
+    console.log(correctCount);
     setShowModal(true);
+    return correctCount; // You can return the count if needed
   };
 
   return (
