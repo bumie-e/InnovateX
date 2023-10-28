@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import QuizForm from "./quizForm";
-import { Navigate } from "react-router-dom";
 
 function MainQuiz() {
   const [input, setInput] = useState({
