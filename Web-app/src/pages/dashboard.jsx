@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import DashboardSIdebar from "../Components/dashboardSIdebar";
 import { useSelector } from "react-redux";
+import menu from "/assets/menu.png";
+
 function Dashboard() {
+  const [isOpen, setIsOpen] = useState(false);
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     getCourses();
@@ -25,7 +28,7 @@ function Dashboard() {
 
   return (
     <>
-      <DashboardSIdebar />
+      <DashboardSIdebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <main className="lg:ml-[309px]">
         {/* desktop */}
@@ -59,12 +62,8 @@ function Dashboard() {
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
         px-16 py-4 flex-between"
         >
-          <img
-            src=""
-            //  onClick={() => setIsOpen(!isOpen)}
-            alt="menu icon"
-          />
-          <p className="font-semibold text-[32px]">Quiz</p>
+          <img src={menu} onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
+          <p className="font-semibold text-[32px]">Dashboard</p>
           <div></div>
         </nav>
 

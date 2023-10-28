@@ -1,9 +1,11 @@
 import DashboardSIdebar from "../Components/dashboardSIdebar";
+import menu from "/assets/menu.png";
 
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const Courses = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const user = useSelector((state) => state.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -35,12 +37,12 @@ const Courses = () => {
 
   return (
     <>
-      <DashboardSIdebar />
+      <DashboardSIdebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <main className="lg:ml-[309px]">
         {/* desktop */}
         <nav
           className="hidden lg:flex border-[#E6E5EE] border-b-[1px]  
-    lg:justify-end px-16 py-5 lg:items-center flex-row"
+             lg:justify-end px-16 py-5 lg:items-center flex-row"
         >
           <div className="mr-4">
             <img
@@ -68,12 +70,8 @@ const Courses = () => {
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
              px-16 py-4 flex-between"
         >
-          <img
-            src=""
-            // onClick={() => setIsOpen(!isOpen)}
-            alt="menu icon"
-          />
-          <p className="font-semibold text-[32px]">Quiz</p>
+          <img src={menu} onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
+          <p className="font-semibold text-[32px]">Courses</p>
           <div></div>
         </nav>
 
