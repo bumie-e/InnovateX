@@ -10,6 +10,8 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from decouple import config
 
+from translate import translate_lang
+
 # Config
 openai.api_base = config('OPENAI_API_BASE')
 openai.api_type = "azure"
@@ -21,24 +23,27 @@ supabase_url = config('SUPABASE_URL')
 supabase_key = config('SUPABASE_SERVICE_KEY')
 SUPABASE_SECRET_KEY = config('SUPABASE_SECRET_KEY')
 
-supabase_url = os.environ.get("SUPABASE_URL")
-supabase_key = os.environ.get("SUPABASE_SERVICE_KEY")
 supabase: Client = create_client(supabase_url, supabase_key)
 
 
-llm = AzureOpenAI(temperature=0.0,model_name="gpt-35-turbo-instruct",
-    deployment_name="lang-chain",)
+llm = AzureOpenAI(temperature=0.0,
+                  model_name="gpt-35-turbo-instruct",
+                  openai_api_version=config('OPENAI_API_VERSION'),
+                  openai_api_key = config('OPENAI_API_KEY'),
+                deployment_name="lang-chain",)
 
 embeddings = OpenAIEmbeddings(deployment="chaining",
-    openai_api_base="https://lang-chain.openai.azure.com/",
-    openai_api_type="azure",)
+                              openai_api_version=config('OPENAI_API_VERSION'),
+                              openai_api_key = config('OPENAI_API_KEY'),
+                            openai_api_base="https://lang-chain.openai.azure.com/",
+                            openai_api_type="azure",)
 
 
 
 # Supabase Request 
 headers = {
-    'apikey': os.environ["SUPABASE_SERVICE_KEY"],
-    'Authorization': f'Bearer {os.environ["SUPABASE_SERVICE_KEY"]}'
+    'apikey': f"{supabase_key}",
+    'Authorization': f"Bearer {supabase_key}"
 }
 
 def courseoutline(qa):
@@ -50,7 +55,7 @@ def subtopics(chapter_name, qa):
 def indepth_subtopics(subtopicname, chapter_name, qa):
     return qa.run(f'Give an in-depth overview of the chapter {subtopicname} in the {chapter_name} chapter ')
 
-def getcourseinfo(course_code):
+def getcourseinfo(course_code, target_language='English'):
     result = {}
 
     url = 'https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/data?select=*'
@@ -64,12 +69,19 @@ def getcourseinfo(course_code):
         sub_topics = literal_eval(sub_topics)[1:]
         chapter = df['chapters'][i]
 
-        result['subtopics'] = sub_topics
-        result['chapters'] = chapter
+        if target_language !='English':
+            result['subtopics'] = translate_lang(target_language, ' '.join(sub_topics))
+            print(sub_topics)
+            result['chapters'] = translate_lang(target_language, ' '.join(chapter))
+            print(chapter)
+        else:
+            result['subtopics'] = sub_topics
+            result['chapters'] = chapter
+        
+        
     return result
 
-
-def getcourse(course_code, page_number):
+def getcourse(course_code, page_number, target_language='English'):
     result = {}
     url = 'https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/data?select=*'
     response = requests.get(url, headers=headers)
@@ -87,11 +99,13 @@ def getcourse(course_code, page_number):
 
     for sub_topic in sub_topics:
         indepth_response = indepth_subtopics(sub_topic, chapter, qa)
+        if target_language !='English':
+            result[sub_topic] = translate_lang(target_language, indepth_response)
         result[sub_topic] = {'indepth_response': indepth_response}
 
     return result
 
-def get_course_quiz(course_code):
+def get_course_quiz(course_code, target_language='English'):
     result = {'questions': {}}
 
     vector_store = SupabaseVectorStore(client=supabase, embedding=embeddings, table_name=f"quiz{course_code}documents".lower(), query_name=f"quiz{course_code}match_documents".lower(),)
@@ -121,11 +135,13 @@ def get_course_quiz(course_code):
 
     return result
 
-def get_question_response(prompt, course_code):
+def get_question_response(prompt, course_code, target_language='English'):
     vector_store = SupabaseVectorStore(client=supabase, embedding=embeddings, table_name=f"{course_code}documents".lower(), query_name=f"{course_code}match_documents".lower(),)
 
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vector_store.as_retriever())
 
     data = qa.run(prompt)
+    if target_language !='English':
+            data = translate_lang(target_language, data)
 
     return data

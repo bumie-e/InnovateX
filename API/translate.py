@@ -3,7 +3,7 @@ from decouple import config
 
 # Add your key and endpoint
 key = config('AZURE_LANGUAGE_KEY')
-endpoint = "https://api.cognitive.microsofttranslator.com"
+endpoint = config('AZURE_LANGUAGE_ENDPOINT')
 
 # location, also known as region.
 # required if you're using a multi-service or regional (not global) resource. It can be found in the Azure portal on the Keys and Endpoint page.
@@ -33,6 +33,7 @@ def translate_lang(target_language, text):
         target_language = 'ig'
     elif target_language == 'Swahili':
         target_language = 'sw'
+    response = ''
 
     params = {
         'api-version': '3.0',
@@ -60,6 +61,5 @@ def translate_lang(target_language, text):
             print('Error is', e)
     else:
         response = text
-
     return response
     # print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separators=(',', ': ')))
