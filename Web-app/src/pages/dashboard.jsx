@@ -4,6 +4,10 @@ import DashboardSIdebar from "../Components/dashboardSIdebar";
 function Dashboard() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
+    getCourses();
+  }, []);
+
+  function getCourses() {
     fetch(import.meta.env.VITE_COURSES_URL, {
       method: "get",
       headers: {
@@ -16,7 +20,8 @@ function Dashboard() {
         console.log(data);
         setCourses(data);
       });
-  }, []);
+  }
+
   return (
     <>
       <DashboardSIdebar />
