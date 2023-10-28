@@ -1,8 +1,10 @@
-import React from "react";
-
 import DashboardSIdebar from "../Components/dashboardSIdebar";
-import { useState, useRef, useEffect } from "react";
 
+import { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+const Courses = () => {
+  const user = useSelector((state) => state.user);
 const courses = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,6 +34,7 @@ const courses = () => {
     }
   }, [isModalOpen]);
 
+
   return (
     <>
       <DashboardSIdebar />
@@ -58,16 +61,20 @@ const courses = () => {
               src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
               alt="Profile"
             />
-            Bunmi Akinremi
+            {user.providerData[0].displayName || "User"}
           </div>
         </nav>
 
         {/* mobile */}
         <nav
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
-    px-16 py-4 flex-between"
+             px-16 py-4 flex-between"
         >
-          <img src="" onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
+          <img
+            src=""
+            // onClick={() => setIsOpen(!isOpen)}
+            alt="menu icon"
+          />
           <p className="font-semibold text-[32px]">Quiz</p>
           <div></div>
         </nav>
@@ -88,11 +95,12 @@ const courses = () => {
                   Course Overview
                 </div>
                 <div className="mt-4 text-[#454545] text-lg">
-                  That's great! Differential calculus is an essential branch of
-                  mathematics that deals with the concept of rates of change and
-                  slopes of curves. To get started, you'll want to familiarize
-                  yourself with some basic concepts and techniques. Here's a
-                  brief overview of what you'll need to learn... Show More
+                  That&apos;s great! Differential calculus is an essential
+                  branch of mathematics that deals with the concept of rates of
+                  change and slopes of curves. To get started, you&apos;ll want
+                  to familiarize yourself with some basic concepts and
+                  techniques. Here&apos;s a brief overview of what you&apos;ll
+                  need to learn... Show More
                 </div>
                 <div className="mt-8 font-semibold text-base">
                   Course Contents
@@ -107,30 +115,30 @@ const courses = () => {
                     {/* <div className=" font-semibold text-base">5 Lessons</div> */}
                   </div>
                 </div>
-                <div class="flex items-center gap-x-3 mt-5">
+                <div className="flex items-center gap-x-3 mt-5">
                   <input
                     id="push-email"
                     name="push-notifications"
                     type="radio"
-                    class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    for="push-email"
-                    class="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="push-email"
+                    className="block text-sm font-medium leading-6 text-gray-900"
                   >
                     Early days of computing
                   </label>
                 </div>
-                <div class="flex items-center gap-x-3 mb-8">
+                <div className="flex items-center gap-x-3 mb-8">
                   <input
                     id="push-email"
                     name="push-notifications"
                     type="radio"
-                    class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    for="push-email"
-                    class="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="push-email"
+                    className="block text-sm font-medium leading-6 text-gray-900"
                   >
                     The Industrial Revolution
                   </label>
@@ -147,31 +155,31 @@ const courses = () => {
                   </div>
                 </div>
 
-                <div class="flex items-center gap-x-3 mt-5">
+                <div className="flex items-center gap-x-3 mt-5">
                   <input
                     id="push-email"
                     name="push-notifications"
                     type="radio"
-                    class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    for="push-email"
-                    class="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="push-email"
+                    className="block text-sm font-medium leading-6 text-gray-900"
                   >
                     The slope of the tangent line to the graph of the function
                     at a given point
                   </label>
                 </div>
-                <div class="flex items-center gap-x-3 mb-8">
+                <div className="flex items-center gap-x-3 mb-8">
                   <input
                     id="push-email"
                     name="push-notifications"
                     type="radio"
-                    class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    for="push-email"
-                    class="block text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="push-email"
+                    className="block text-sm font-medium leading-6 text-gray-900"
                   >
                     The area under the curve of the function
                   </label>
@@ -379,8 +387,14 @@ const courses = () => {
                       course contents for you.
                     </p>
                   </div>
-                  <div className="mr-7 ml-7 text-xs mb-8 text-center px-6 pt-4 pb-8 bg-gray-200 rounded-lg center text-sm font-semibold text-gray-700">
-                    <div className="place-self-center text-center place-items-center place-content-center self-center items-center content-center">
+                  <div
+                    className="mr-7 ml-7 text-xs mb-8 text-center px-6 pt-4 pb-8
+                   bg-gray-200 rounded-lg center font-semibold text-gray-700"
+                  >
+                    <div
+                      className="place-self-center text-center place-items-center
+                     place-content-center self-center items-center content-center"
+                    >
                       <img
                         className="place-self-center text-center place-items-center place-content-center self-center items-center content-center"
                         src="/assets/upload.png"
@@ -400,4 +414,4 @@ const courses = () => {
   );
 };
 
-export default courses;
+export default Courses;

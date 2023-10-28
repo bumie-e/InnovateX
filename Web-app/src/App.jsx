@@ -387,7 +387,7 @@ function App() {
 
           <div className=" lg:flex-center items-center gap-8 mt-12">
             <button className=" rounded-lg bg-pry-col mb-5 lg:mb-0 text-white py-4 px-14">
-              Try for Free
+              <Link to="/login">Try for Free</Link>
             </button>
 
             <div>

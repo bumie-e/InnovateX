@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import DashboardSIdebar from "../Components/dashboardSIdebar";
-
+import { useSelector } from "react-redux";
 function Dashboard() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     getCourses();
   }, []);
+  const user = useSelector((state) => state.user);
 
   function getCourses() {
     fetch(import.meta.env.VITE_COURSES_URL, {
@@ -49,7 +50,7 @@ function Dashboard() {
               src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
               alt="Profile"
             />
-            Bunmi Akinremi
+            {user.providerData[0].displayName || "User"}
           </div>
         </nav>
 

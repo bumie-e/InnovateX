@@ -67,8 +67,8 @@ function ChatContainer() {
       console.error(error);
     }
 
-    const botResponse = "This is a simulated bot response."; // Simulated bot response; replace with your actual API call
-    scrollToBottom();
+    // const botResponse = "This is a simulated bot response."; // Simulated bot response; replace with your actual API call
+    // scrollToBottom();
   }
 
   // if (!messages) return <ChatOnboarding handleFormChange={handleFormChange} />;
