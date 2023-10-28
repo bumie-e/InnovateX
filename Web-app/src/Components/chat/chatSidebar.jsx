@@ -1,11 +1,12 @@
 import logo from "/assets/chat_logo.png";
 import { PropTypes } from "prop-types";
+import { Link } from "react-router-dom";
 
 import plus from "/assets/dashboard/plus.png";
 import User from "/assets/dashboard/User.png";
 import more from "/assets/dashboard/more.png";
 import podcast from "/assets/dashboard/podcast.png";
-import videos from "/assets/dashboard/videos.png";
+// import videos from "/assets/dashboard/videos.png";
 import right from "/assets/dashboard/ci_chevron-right.png";
 import research from "/assets/dashboard/mdi_papers-outlineresearch.png";
 function Sidebar({ isOpen, setIsOpen }) {
@@ -18,12 +19,14 @@ function Sidebar({ isOpen, setIsOpen }) {
       >
         <div className="flex flex-col justify-between h-full ">
           <div>
-            <img src={logo} alt="" />
+            <Link to="/dashboard">
+              <img src={logo} alt="" />
+            </Link>
 
             {/* New Topic */}
             <button
               className="border-[1px] border-pry-col rounded-lg pl-6 py-[22px] w-full
-       text-left mt-10 mb-5 flex items-center "
+                text-left mt-10 mb-5 flex items-center "
             >
               <img src={plus} alt="" />
               <span className="ml-6 font-semibold text-lg text-pry-col">
@@ -66,7 +69,7 @@ function Sidebar({ isOpen, setIsOpen }) {
           </div>
 
           {/* profile */}
-          <div className="flex-between py-8 px-7">
+          <div className="flex-between py-8 ">
             <div className="flex items-end">
               <img src={User} alt="" />
               <span>Bunmi Akinremi</span>
