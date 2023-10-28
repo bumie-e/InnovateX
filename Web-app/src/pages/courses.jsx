@@ -1,8 +1,37 @@
 import React from "react";
 
 import DashboardSIdebar from "../Components/dashboardSIdebar";
+import { useState, useRef, useEffect } from "react";
 
 const courses = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      // Add a click event listener to close the modal when clicking outside of it
+      const handleOutsideClick = (e) => {
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+          closeModal();
+        }
+      };
+
+      document.addEventListener("mousedown", handleOutsideClick);
+
+      return () => {
+        // Cleanup the event listener when the modal is closed
+        document.removeEventListener("mousedown", handleOutsideClick);
+      };
+    }
+  }, [isModalOpen]);
+
   return (
     <>
       <DashboardSIdebar />
@@ -159,9 +188,185 @@ const courses = () => {
               </div>
 
               <div className="col-span-2 mt-7">
-                <button className="bg-[#5250CD] mb-8 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-md">
+                <button
+                  onClick={openModal}
+                  className="bg-[#5250CD] mb-8 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  //                  className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="button"
+                  data-modal-target="default-modal"
+                  data-modal-toggle="default-modal"
+                  // className="bg-[#5250CD] mb-8 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-md"
+                >
                   Start Course
                 </button>
+
+                {isModalOpen && (
+                  <div className="fixed top-0 left-0 right-0 z-50 w-screen h-screen p-4 overflow-x-hidden overflow-y-auto bg-gray-500 shadow-lg">
+                    <div className="relative w-full max-w-2xl mx-auto">
+                      <div className="relative bg-white rounded-lg shadow p-4">
+                        <div className="flex items-start justify-between border-b rounded-t p-4">
+                          <h3 className="text-xl font-semibold text-gray-900"></h3>
+                          <button onClick={closeModal}>X</button>
+                        </div>
+
+                        <form className=" mb-8 shadow-chat-onboarding p-8 lg:mr-[100px] max-w-[749px]">
+                          <div>
+                            <div className="mb-8">
+                              Before you proceed, kindly answer the short
+                              evaluation questions below. This will be used to
+                              tailor the course contents to your preferences.
+                            </div>
+                            <p>
+                              1. Are you looking for introductory explanation or
+                              more insights?
+                            </p>
+                            <div className=" mt-3 ">
+                              <input
+                                type="radio"
+                                value="Introductory explanations"
+                                name="explanation_level"
+                                className="mr-2"
+                                id="intro"
+                                // checked={
+                                //   input.explanation_level ===
+                                //   "Introductory explanations"
+                                // }
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">
+                                Introductory explanation
+                              </label>
+                            </div>
+
+                            <div>
+                              <input
+                                type="radio"
+                                className="mr-2"
+                                value="Advanced insights"
+                                name="explanation_level"
+                                id="intro"
+                                // checked={
+                                //   input.explanation_level ===
+                                //   "Advanced insights"
+                                // }
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">Advanced insights</label>
+                            </div>
+                          </div>
+
+                          {/* two */}
+                          <div className=" my-6">
+                            <p>
+                              2. Would you like explanations to start from the
+                              basics or assume prior understanding?
+                            </p>
+                            <div className=" mt-3 ">
+                              <input
+                                type="radio"
+                                value="Little"
+                                name="prior_knowledge"
+                                className="mr-2"
+                                id="intro"
+                                // checked={input.prior_knowledge === "Little"}
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">Basics</label>
+                            </div>
+
+                            <div>
+                              <input
+                                type="radio"
+                                value="Prior"
+                                className="mr-2"
+                                name="prior_knowledge"
+                                id="intro"
+                                // checked={input.prior_knowledge === "Prior"}
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">
+                                Assume little understanding
+                              </label>
+                            </div>
+                          </div>
+
+                          {/* three */}
+                          <div className=" my-6">
+                            <p>
+                              3. Do you prefer concise explanation or in depth
+                              exploration?
+                            </p>
+                            <div className=" mt-3 ">
+                              <input
+                                type="radio"
+                                value="Concise"
+                                name="explanation_type"
+                                className="mr-2"
+                                id="intro"
+                                // checked={input.explanation_type === "Concise"}
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">Concise</label>
+                            </div>
+
+                            <div>
+                              <input
+                                type="radio"
+                                className="mr-2"
+                                name="explanation_type"
+                                id="intro"
+                                value="In-depth explorations"
+                                // checked={
+                                //   input.explanation_type ===
+                                //   "In-depth explorations"
+                                // }
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">In depth</label>
+                            </div>
+                          </div>
+
+                          {/* four */}
+                          <div className=" my-6">
+                            <p>
+                              4.Do you want interactive elements like quizzes,
+                              exercises or simulations
+                            </p>
+                            <div className=" mt-3 ">
+                              <input
+                                type="radio"
+                                value="Yes"
+                                name="interaction_needed"
+                                className="mr-2"
+                                id="intro"
+                                // checked={input.interaction_needed === "Yes"}
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">Yes</label>
+                            </div>
+
+                            <div>
+                              <input
+                                type="radio"
+                                value="No"
+                                className="mr-2"
+                                name="interaction_needed"
+                                id="intro"
+                                // checked={input.interaction_needed === "No"}
+                                // onChange={handleFormChange}
+                              />
+                              <label htmlFor="intro">No</label>
+                            </div>
+                          </div>
+
+                          <button className=" rounded-lg py-[18px] px-14 bg-pry-col text-white">
+                            Save and Proceed 
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="max-w-sm rounded-lg overflow-hidden shadow-sm border">
                   <div className="px-6 py-4">
