@@ -66,8 +66,8 @@ function NewChat({
             key={index}
           >
             {message.isUser ? (
-              <div className="flex   items-start justify-end">
-                <div className=" p-2 ">{message.text}</div>
+              <div className="flex items-start justify-end">
+                <div className="p-2">{message.text}</div>
                 <img
                   src="user-image.jpg" // User profile image URL
                   alt="User"
@@ -81,7 +81,7 @@ function NewChat({
                   alt="Bot"
                   className="w-8 h-8 rounded-full mr-2"
                 />
-                <div className=" p-2 rounded-lg">{message.text}</div>
+                <div className="p-2 rounded-lg">{message.text}</div>
               </div>
             )}
           </div>
@@ -102,28 +102,20 @@ function NewChat({
                   justifyContent: "center",
                 }}
                 className="relative w-fit"
+                onSubmit={handleChat}
               >
                 <input
                   className="w-[400px] "
                   type="text"
-                  name="topic"
+                  name="question"
                   placeholder="Type your message..."
-                  value={input.topic}
+                  value={input.question}
                   onChange={handleFormChange}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault(); // Prevent the default behavior
-                    }
-                  }}
                   autoFocus
                 />
-                <img
-                  src={send}
-                  onClick={handleChat}
-                  alt=""
-                  className="absolute right-3 "
-                />
-                {/* <button>Send</button> */}
+                <button className="absolute right-3 ">
+                  <img src={send} alt="" />
+                </button>
               </form>
             </div>
           </div>

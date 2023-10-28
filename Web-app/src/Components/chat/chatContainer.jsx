@@ -4,7 +4,10 @@ import NewChat from "../../Components/newChat";
 
 function ChatContainer() {
   const [input, setInput] = useState({
-    topic: "",
+    language: "English",
+    course_code: "",
+    page_number: 0,
+    question: "string",
     explanation_level: "Advanced insights",
     prior_knowledge: "Little",
     explanation_type: "In-depth explorations",
@@ -27,41 +30,49 @@ function ChatContainer() {
   function handleChat(e) {
     e.preventDefault();
     const {
-      topic,
+      language,
+      course_code,
+      page_number,
+      question,
       explanation_level,
       explanation_type,
       prior_knowledge,
       interaction_needed,
     } = input;
-    const formData = new FormData();
 
-    formData.append("topic", topic);
-    formData.append("explanation_level", explanation_level);
-    formData.append("explanation_type", explanation_type);
-    formData.append("prior_knowledge", prior_knowledge);
-    formData.append("interaction_needed", interaction_needed);
-
-    if (input.topic.trim() === "") return;
+    if (input.question.trim() === "") return;
     // console.log(input);
-    const userMessage = { text: input, isUser: true };
+    // const userMessage = { text: input.question, isUser: true };
 
     try {
-      fetch("https://innovatex-backends.onrender.com/chat", {
+      fetch("https://innovatex.azurewebsites.net/chat", {
         method: "POST",
-        body: formData,
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(input),
       })
-        .then((response) => response.json())
+        .then((response) => response.text())
         .then((data) => {
-          console.log(data);
+          const responseObject = JSON.parse(data);
+
+          console.log(responseObject.message);
           // Add the user's message and the bot's response to the chat history
           setMessages([
             ...messages,
-            userMessage,
-            { text: data, isUser: false },
+            { text: input.question, isUser: true }, // Add the user message text
+            { text: responseObject.message, isUser: false }, // Add the bot's response text
           ]);
-          setInput(""); // Clear the input field
+          setInput({
+            language: "English",
+            course_code: "",
+            page_number: 0,
+            question: "",
+            explanation_level: "Advanced insights",
+            prior_knowledge: "Little",
+            explanation_type: "In-depth explorations",
+            interaction_needed: "Yes",
+          }); // Clear the input fields
         });
     } catch (error) {
       console.error(error);
