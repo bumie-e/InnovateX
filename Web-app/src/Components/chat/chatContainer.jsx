@@ -7,7 +7,7 @@ function ChatContainer() {
     language: "English",
     course_code: "",
     page_number: 0,
-    question: "string",
+    question: "",
     explanation_level: "Advanced insights",
     prior_knowledge: "Little",
     explanation_type: "In-depth explorations",
@@ -29,16 +29,6 @@ function ChatContainer() {
 
   function handleChat(e) {
     e.preventDefault();
-    const {
-      language,
-      course_code,
-      page_number,
-      question,
-      explanation_level,
-      explanation_type,
-      prior_knowledge,
-      interaction_needed,
-    } = input;
 
     if (input.question.trim() === "") return;
     // console.log(input);
