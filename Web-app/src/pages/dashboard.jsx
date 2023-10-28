@@ -58,7 +58,11 @@ function Dashboard() {
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
         px-16 py-4 flex-between"
         >
-          <img src="" onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
+          <img
+            src=""
+            //  onClick={() => setIsOpen(!isOpen)}
+            alt="menu icon"
+          />
           <p className="font-semibold text-[32px]">Quiz</p>
           <div></div>
         </nav>
