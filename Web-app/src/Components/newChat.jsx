@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import send from "/assets/send.png";
 import PropTypes from "prop-types";
-// import ChatOnboarding from "../Components/chatOnboarding";
 
 function NewChat({
   input,
@@ -66,20 +65,20 @@ function NewChat({
             key={index}
           >
             {message.isUser ? (
-              <div className="flex items-start justify-end">
+              <div className="flex items-start justify-end py-4">
                 <div className="p-2">{message.text}</div>
                 <img
-                  src="user-image.jpg" // User profile image URL
-                  alt="User"
-                  className="w-8 h-8 rounded-full mr-2"
+                  className="ml-4 rounded-full h-10 w-10 inline mr-2"
+                  src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
+                  alt="Profile"
                 />
               </div>
             ) : (
-              <div className="flex items-start">
+              <div className="flex items-start py-4">
                 <img
-                  src="bot-image.jpg" // Bot profile image URL
-                  alt="Bot"
-                  className="w-8 h-8 rounded-full mr-2"
+                  className="ml-4 rounded-full h-10 w-10 inline mr-2"
+                  src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
+                  alt="Profile"
                 />
                 <div className="p-2 rounded-lg">{message.text}</div>
               </div>
