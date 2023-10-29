@@ -24,8 +24,10 @@ supabase: Client = create_client(supabase_url, supabase_key)
 
 # Initialize OpenAI embeddings
 embeddings = OpenAIEmbeddings(deployment="chaining",
-    openai_api_base="https://lang-chain.openai.azure.com/",
-    openai_api_type="azure",)
+                              openai_api_version=config('OPENAI_API_VERSION'),
+                              openai_api_key = config('OPENAI_API_KEY'),
+                            openai_api_base="https://lang-chain.openai.azure.com/",
+                            openai_api_type="azure",)
 
 # Initialize text splitter
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)

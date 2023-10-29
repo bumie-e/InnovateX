@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import DashboardSIdebar from "../Components/dashboardSIdebar";
+import { useSelector } from "react-redux";
+import menu from "/assets/menu.png";
 
 function Dashboard() {
+  const [isOpen, setIsOpen] = useState(false);
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     getCourses();
   }, []);
+  const user = useSelector((state) => state.user);
 
   function getCourses() {
     fetch(import.meta.env.VITE_COURSES_URL, {
@@ -24,7 +28,7 @@ function Dashboard() {
 
   return (
     <>
-      <DashboardSIdebar />
+      <DashboardSIdebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <main className="lg:ml-[309px]">
         {/* desktop */}
@@ -49,7 +53,7 @@ function Dashboard() {
               src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
               alt="Profile"
             />
-            Bunmi Akinremi
+            {user.providerData[0].displayName || "User"}
           </div>
         </nav>
 
@@ -58,12 +62,8 @@ function Dashboard() {
           className="lg:hidden text-center border-[#E6E5EE] border-b-[1px] 
         px-16 py-4 flex-between"
         >
-          <img
-            src=""
-            //  onClick={() => setIsOpen(!isOpen)}
-            alt="menu icon"
-          />
-          <p className="font-semibold text-[32px]">Quiz</p>
+          <img src={menu} onClick={() => setIsOpen(!isOpen)} alt="menu icon" />
+          <p className="font-semibold text-[32px]">Dashboard</p>
           <div></div>
         </nav>
 

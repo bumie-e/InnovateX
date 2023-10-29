@@ -6,11 +6,10 @@ import Intro from "../Components/quiz/quizIntro";
 function Quiz() {
   const [isOpen, setIsOpen] = useState(false);
 
-
   // if form is successful, return chat, else return onboarding
   return (
     <>
-      <DashboardSIdebar />
+      <DashboardSIdebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <main className="lg:ml-[309px]">
         {/* desktop */}
