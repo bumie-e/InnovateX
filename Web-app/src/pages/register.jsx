@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 // import firebase from "firebase/app";
 import "firebase/auth";
@@ -16,9 +11,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import image from "/assets/login.png";
-import login_with_google from "/assets/login_with_google.png";
 
 function Register() {
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -45,21 +40,23 @@ function Register() {
   const auth = getAuth(app);
 
   function handleSubmit(e) {
+    setLoading(true);
     e.preventDefault();
     const { email, password } = input;
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // console.log(user);
+      .then(() => {
         toast("Registration successful"); // Display a success toast
         setTimeout(() => {
           navigate("/login"); // Redirect to the login page
         }, 3000);
-
-        // ...
+        setLoading(false);
+        setInput({
+          email: "",
+          password: "",
+        });
       })
       .catch((error) => {
+        setLoading(false);
         toast(error.message);
         console.log(error.code);
         // const errorCode = error.code;
@@ -67,31 +64,6 @@ function Register() {
       });
   }
 
-  const registerWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // console.log(user);
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        console.error(error);
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  };
   return (
     <>
       <div className=" px-4 h-[100vh] flex items-center justify-center">
@@ -105,16 +77,6 @@ function Register() {
             <h2 className=" font-semibold text-[28px] text-5xl">
               Create an Account
             </h2>
-            <button
-              className="text-pry-col gap-[10px] rounded-lg mt-10 
-            lg:mt-14 lg:mb-8 mb-6 border-[#5250CD] border-[1px]
-             w-full py-[18px]  flex-center"
-              onClick={registerWithGoogle}
-            >
-              <img src={login_with_google} alt="" />
-              <span>Sign up with Google</span>
-            </button>
-            <p>Or login with email</p>
 
             <form onSubmit={handleSubmit}>
               <div className=" my-8">
@@ -152,7 +114,7 @@ function Register() {
               <div className=" text-right">Forgot password</div>
 
               <button className=" bg-pry-col mt-4 text-white w-full py-4 rounded-lg">
-                Sign Up
+                {loading ? "Submitting..." : "Sign Up"}
               </button>
               <ToastContainer />
 
