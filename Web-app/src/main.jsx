@@ -17,6 +17,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import thunk from "redux-thunk";
+import Podcast from "./pages/podcast.jsx";
 
 const persistConfig = {
   key: "root",
@@ -75,6 +76,14 @@ const router = createBrowserRouter([
     element: (
       <AuthLayout>
         <Courses />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/podcast",
+    element: (
+      <AuthLayout>
+        <Podcast />
       </AuthLayout>
     ),
   },
