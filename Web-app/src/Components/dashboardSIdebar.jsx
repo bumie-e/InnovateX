@@ -1,6 +1,11 @@
 import logo from "/assets/chat_logo.png";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { getAuth, signOut } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import { setLogin } from "../store";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import chat from "/assets/dashboard/chat.png";
 import dashboard from "/assets/dashboard/dashboard.png";
@@ -8,6 +13,32 @@ import quiz from "/assets/dashboard/quiz.png";
 import course from "/assets/dashboard/course.png";
 
 function DashboardSIdebar({ isOpen, setIsOpen }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Successful logout
+        dispatch(
+          setLogin({
+            user: null,
+            token: null,
+          })
+        );
+        toast("Logged out successfully");
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
+      })
+      .catch((error) => {
+        // Handle error if logout fails
+        toast("Log out error");
+        console.error("Logout error", error);
+      });
+  };
+
   return (
     <>
       {/* desktop */}
@@ -36,6 +67,12 @@ function DashboardSIdebar({ isOpen, setIsOpen }) {
               <div className="flex gap-2">
                 <img src={quiz} alt="" />
                 <Link to="/quiz">Quiz</Link>
+              </div>
+              <div className="flex gap-2">
+                <img src={quiz} alt="" />
+                <Link to="#" onClick={handleLogout}>
+                  Logout
+                </Link>
               </div>
             </div>
           </div>
@@ -88,6 +125,12 @@ function DashboardSIdebar({ isOpen, setIsOpen }) {
                 <div className="flex gap-2">
                   <img src={quiz} alt="" />
                   <Link to="/quiz">Quiz</Link>
+                </div>
+                <div className="flex gap-2">
+                  <img src={quiz} alt="" />
+                  <Link to="#" onClick={handleLogout}>
+                    Logout
+                  </Link>
                 </div>
               </div>
             </div>
