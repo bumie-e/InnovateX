@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ChatContainer from "../Components/chat/chatContainer";
 import ChatSideBar from "../Components/chat/chatSidebar";
-
 import menu from "/assets/menu.png";
 
 function Chat() {
