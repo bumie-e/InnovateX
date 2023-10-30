@@ -51,6 +51,13 @@
   /* .card {
     @apply grid place-items-center grid-cols-1 lg:grid-cols-2  gap-[28px];
   } */
+  .podcast-cards {
+    @apply shadow-2xl m-4 rounded-3xl md:w-[350px];
+  }
+  .podcast-cards img,
+  .podcast-cards div {
+    width: -webkit-fill-available;
+  }
   .card {
     @apply flex flex-wrap gap-[28px] justify-center;
   }
