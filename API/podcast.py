@@ -34,4 +34,4 @@ def query_podcast_api(query):
                              'podcast_title':podcast_title, 'podcast_channel_title':podcast_channel_title})
     print(len(podcast_info))
     podcast_info = json.dumps(podcast_info)
-    return json.loads(podcast_info)
+    return podcast_info
