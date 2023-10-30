@@ -1,4 +1,8 @@
+import { useState } from "react";
+import ChatSideBar from "../Components/chat/chatSidebar";
+
 function Podcast() {
+  const [isOpen, setIsOpen] = useState(false);
   const podcasts = [
     {
       link_to_audio_file:
@@ -35,7 +39,8 @@ function Podcast() {
 
   return (
     <>
-      <main>
+      <ChatSideBar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <main className="lg:ml-[309px]">
         <h1 className=" text-center my-12">Podcasts</h1>
         <div className="mx-auto flex flex-wrap justify-center h-[100vh]">
           {podcasts &&
