@@ -11,11 +11,8 @@ from upload import upload_file
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi import FastAPI, UploadFile, HTTPException, File
-from fastapi.responses import JSONResponse
-import shutil
-from pathlib import Path
-import io
 from fastapi.middleware.cors import CORSMiddleware
+import json
 
 
 
@@ -72,12 +69,12 @@ async def course(item: Item):
     #     Additionally, can you {item.specific_example} make it more engaging and relevant to my interests?"""
 
     response = getcourse(item.course_code, item.page_number, item.language)
-    return {"message": f"{response}"}
+    return json.loads(json.dumps({"message": response}))
 
 @app.post("/courseinfo")
 async def courseinfo(item: Item):
     response = getcourseinfo(item.course_code, item.language)
-    return {"message": f"{response}"}
+    return json.loads(json.dumps({"message": response}))
 
 
 # Define chat
@@ -92,7 +89,7 @@ async def quiz(item: Item):
 
     response = get_course_quiz(item.course_code, item.language)
     #response = get_quiz_from_topic(item.topic)
-    return {"message": f"{response}"}
+    return json.loads(json.dumps({"message": response}))
 
 # Define root
 @app.post("/question")
@@ -101,25 +98,25 @@ async def questions(item: Item):
     # response = get_chat_response(prompt)
     prompt = f'What is the answer to this question: {item.question}?'
     response = get_question_response(prompt, item.course_code, item.language)
-    return {"message": f"{response}"}
+    return json.loads(json.dumps({"message": response}))
 
 # Define podcast
 @app.post("/podcast")
 async def podcast(item:Item):
     response = query_podcast_api(item.topic)
-    return {"message": f"{response}"}
+    return json.loads(json.dumps({"message": response}))
 
 # Define rpaper
 @app.post("/rpaper")
 async def rpaper(item: Item):
     response  = query_API(item.topic)
-    return {"message": f"{response}"}
+    return json.loads(json.dumps({"message": response}))
 
 # Define root
 @app.post("/translate")
 async def translate(item: Item):
     response = translate_lang(item.language, item.text)
-    return {"message": f"{response}"}
+    return {"message": response}
 
 # Define root
 @app.post("/video")

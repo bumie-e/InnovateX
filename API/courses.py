@@ -9,6 +9,7 @@ from supabase.client import Client, create_client
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import SupabaseVectorStore
 from decouple import config
+import json
 
 from translate import translate_lang
 
@@ -78,7 +79,6 @@ def getcourseinfo(course_code, target_language='English'):
             result['subtopics'] = sub_topics
             result['chapters'] = chapter
         
-        
     return result
 
 def getcourse(course_code, page_number, target_language='English'):
@@ -132,6 +132,7 @@ def get_course_quiz(course_code, target_language='English'):
         
         # Update the question's data with the answer
         result['questions'][question]['answer'] = ans
+    #result = json.dumps(result, indent = 4) 
 
     return result
 
@@ -143,5 +144,5 @@ def get_question_response(prompt, course_code, target_language='English'):
     data = qa.run(prompt)
     if target_language !='English':
             data = translate_lang(target_language, data)
-
+        
     return data
