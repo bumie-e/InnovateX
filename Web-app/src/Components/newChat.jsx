@@ -21,27 +21,33 @@ function NewChat({ input, handleFormChange, messages, handleChat }) {
           <div
             className={`message ${
               message.isUser ? "user flex-row-reverse" : "bot bg-[#F6F6FB]"
-            } max-w-5xl px-9 lg:px-20`}
+            }  px-9 lg:px-20`}
             key={index}
           >
             {message.isUser ? (
-              <div className="flex items-start justify-end py-4">
-                <div className="p-2">{message.text}</div>
-                <img
-                  className="ml-4 rounded-full h-10 w-10 inline mr-2"
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
-                  alt="Profile"
-                />
+              <div className="max-w-5xl mx-auto">
+                <div className="flex items-start justify-end  py-4">
+                  <div className="p-2">{message.text}</div>
+                  <img
+                    className="ml-4 rounded-full h-10 w-10 inline mr-2"
+                    src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
+                    alt="Profile"
+                  />
+                </div>
               </div>
             ) : (
-              <div className="flex items-start py-4">
-                <img
-                  className="ml-4 rounded-full h-10 w-10 inline mr-2"
-                  src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
-                  alt="Profile"
-                />
-                <div className="p-2 rounded-lg">{message.text}</div>
-              </div>
+              <>
+                <div className="max-w-5xl mx-auto">
+                  <div className="flex items-start jus max-w-5xl py-4">
+                    <img
+                      className="ml-4 rounded-full h-10 w-10 inline mr-2"
+                      src="https://res.cloudinary.com/pro-solve/image/upload/v1663362284/samples/people/kitchen-bar.jpg"
+                      alt="Profile"
+                    />
+                    <div className="p-2 rounded-lg">{message.text}</div>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         ))}
