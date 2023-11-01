@@ -50,13 +50,13 @@ function Sidebar({ isOpen, setIsOpen }) {
 
             {/* podcasts */}
             <div className="flex flex-col gap-4 mt-4">
-              <div className="flex-between">
+              <Link to="/podcast" className="flex-between">
                 <div className="flex gap-3 items-center">
                   <img src={podcast} alt="" />
                   <p>Podcasts</p>
                 </div>
                 <img src={right} alt="" />
-              </div>
+              </Link>
 
               <div className="flex-between">
                 <div className="flex gap-3 items-center">

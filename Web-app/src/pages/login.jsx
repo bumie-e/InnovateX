@@ -3,23 +3,17 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { setLogin } from "../store";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  signInWithRedirect,
-  GoogleAuthProvider,
-  getRedirectResult,
-} from "firebase/auth";
+import { auth } from "../firebase.config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 // import firebase from "firebase/app";
 import "firebase/auth";
 // import "firebase/firestore";
 import image from "/assets/login.png";
-import login_with_google from "/assets/login_with_google.png";
 
 function Login() {
+  const [loading, setLoading] = useState(false);
+
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -34,20 +28,9 @@ function Login() {
     setErrors({ ...errors, [name]: "" });
   }
 
-  const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
   async function handleSubmit(e) {
+    setLoading(true);
+
     e.preventDefault();
     const { email, password } = input;
     signInWithEmailAndPassword(auth, email, password)
@@ -66,49 +49,21 @@ function Login() {
           navigate("/dashboard");
         }, 3000);
         // ...
+        setInput({
+          email: "",
+          password: "",
+        });
+        setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
+
         toast(error.code);
         console.log(error.code);
       });
   }
 
   // login with google
-  const loginWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-
-    getRedirectResult(auth)
-      .then((result) => {
-        // This gives you the result of the redirect operation.
-        // if (result.credential) {
-        // This gives you the Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // }
-
-        // The signed-in user info.
-        const user = result.user;
-
-        // You can access the user's basic information like name, email, etc.
-        const displayName = user.displayName;
-        const email = user.email;
-        const photoURL = user.photoURL;
-        const uid = user.uid;
-
-        // You can do something with the user's information here.
-        console.log("User Info:", user);
-
-        // ...
-      })
-      .catch((error) => {
-        console.error(error);
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ...
-      });
-  };
 
   return (
     <>
@@ -121,14 +76,6 @@ function Login() {
 
           <div className="   px-[25px] lg:px-0 ">
             <h2 className=" font-semibold text-[28px] text-5xl">Login</h2>
-            <button
-              className="text-pry-col gap-[10px] rounded-lg mt-10 lg:mt-14 lg:mb-8 mb-6 border-[#5250CD] border-[1px] w-full py-[18px]  flex-center"
-              onClick={loginWithGoogle}
-            >
-              <img src={login_with_google} alt="" />
-              <span>Log in with Google</span>
-            </button>
-            <p>Or login with email</p>
 
             <form onSubmit={handleSubmit}>
               <div className=" my-8">
@@ -166,7 +113,7 @@ function Login() {
               <div className=" text-right">Forgot password</div>
 
               <button className=" bg-pry-col mt-4 text-white w-full py-4 rounded-lg">
-                Log In
+                {loading ? "Submitting..." : "Log In"}
               </button>
               <ToastContainer />
 
