@@ -57,35 +57,48 @@ def indepth_subtopics(subtopicname, chapter_name, qa):
     return qa.run(f'Give an in-depth overview of the chapter {subtopicname} in the {chapter_name} chapter ')
 
 def getcourseinfo(course_code, target_language='English'):
-    result = {}
+    result = {
+    }
 
     url = 'https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/data?select=*'
-    response = requests.get(url, headers=headers)
-    data = response.json()
+    # Error handling for the request
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raise an error for bad responses
+        data = response.json()
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return {}
     df = pd.DataFrame(data)
-    df = df[df['course_code'] == course_code].reset_index(drop=True)
-    
-    for i in range(len(df)):
-        sub_topics = df['sub_topics'][i]
-        sub_topics = literal_eval(sub_topics)[1:]
-        chapter = df['chapters'][i]
+    course_data = df[df['course_code'] == course_code]
 
-        if target_language !='English':
-            result['subtopics'] = translate_lang(target_language, ' '.join(sub_topics))
-            print(sub_topics)
-            result['chapters'] = translate_lang(target_language, ' '.join(chapter))
-            print(chapter)
+    result['chapter'] = {}
+
+    for _, row in course_data.iterrows():
+        sub_topics = literal_eval(row['sub_topics'])[1:]
+        chapter = row['chapters']
+
+        if target_language != 'English':
+            translated_subtopics = translate_lang(target_language, ' '.join(sub_topics))
+            translated_chapter = translate_lang(target_language, chapter)
+            
+            result['chapter'][translated_chapter] = {'subtopics':translated_subtopics}
         else:
-            result['subtopics'] = sub_topics
-            result['chapters'] = chapter
+            result['chapter'][chapter] = {'subtopics':sub_topics}
         
     return result
 
 def getcourse(course_code, page_number, target_language='English'):
     result = {}
     url = 'https://hryzlnqorkzfkdrkpgbl.supabase.co/rest/v1/data?select=*'
-    response = requests.get(url, headers=headers)
-    data = response.json()
+    # Error handling for the request
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raise an error for bad responses
+        data = response.json()
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return {}
     df = pd.DataFrame(data)
     df = df[df['course_code'] == course_code].reset_index(drop=True)
     
@@ -97,11 +110,15 @@ def getcourse(course_code, page_number, target_language='English'):
     vector_store = SupabaseVectorStore(client=supabase, embedding=embeddings, table_name=f"{course_code}documents".lower(), query_name=f"{course_code}match_documents".lower())
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vector_store.as_retriever())
 
+    result['course-title'] = chapter
+    result['subtopics'] = {}
+
     for sub_topic in sub_topics:
         indepth_response = indepth_subtopics(sub_topic, chapter, qa)
-        if target_language !='English':
-            result[sub_topic] = translate_lang(target_language, indepth_response)
-        result[sub_topic] = {'indepth_response': indepth_response}
+        if target_language != 'English':
+            indepth_response = translate_lang(target_language, indepth_response)
+        
+        result['subtopics'][sub_topic] = {'indepth_response': indepth_response}
 
     return result
 
