@@ -12,7 +12,7 @@ An AI-powered content personalization platform that utilizes generative AI to ex
 
 ## How Generative AI Models are Solving the Problem
 
-We're leveraging Gen AI to
+We're leveraging Gen AI with LangChain to
 
 - Explain a concept based on an evaluation of your current knowledge and capability
 - Suggest videos, podcasts, and research papers that explain a concept better
